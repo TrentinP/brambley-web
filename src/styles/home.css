@@ -66,8 +66,8 @@
   white-space: nowrap;
   text-align: center;
 }
-.observatory-link { left: 74%; top: 69%; }
-.notes-link { left: 30%; top: 69%; }
+.observatory-link { left: 71.5%; top: 73%; }
+.notes-link { left: 30%; top: 73%; }
 
 .brambley-link span { display: inline-block; margin-left: .22em; transition: transform 160ms ease; }
 .brambley-link:hover span { transform: translateX(3px); }
