@@ -1,0 +1,657 @@
+/* ==========================================================
+   BRAMBLEY OBSERVATORY
+   Compact hero > instruments > story > field observations.
+   All Observatory rules are scoped to this page's wrapper.
+   ========================================================== */
+
+.brambley-observatory {
+  --bo-charcoal: #171b19;
+  --bo-charcoal-2: #202622;
+  --bo-ink: #242925;
+  --bo-cream: #f1efe7;
+  --bo-paper: #e9e6dc;
+  --bo-line: rgba(255, 255, 255, .16);
+  --bo-gutter: clamp(24px, 6vw, 88px);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bo-charcoal);
+  color: var(--bo-cream);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.brambley-observatory *,
+.brambley-observatory *::before,
+.brambley-observatory *::after {
+  box-sizing: border-box;
+}
+
+.brambley-observatory .bo-container {
+  width: calc(100% - var(--bo-gutter) - var(--bo-gutter));
+  max-width: 1160px;
+  margin-inline: auto;
+}
+
+.brambley-observatory img {
+  display: block;
+  max-width: 100%;
+}
+
+.brambley-observatory a {
+  text-decoration: none;
+}
+
+.brambley-observatory a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+
+.brambley-observatory .bo-card-image:focus-visible {
+  outline-offset: -4px;
+}
+
+.brambley-observatory section {
+  scroll-margin-top: 80px;
+}
+
+.brambley-observatory h1,
+.brambley-observatory h2,
+.brambley-observatory h3 {
+  padding: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  text-transform: none;
+}
+
+/* Compact hero and page navigation */
+.brambley-observatory .bo-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 380px;
+  height: auto;
+  overflow: hidden;
+  isolation: isolate;
+  background: #242925;
+}
+
+.brambley-observatory .bo-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center 48%;
+  transform: none;
+  z-index: -2;
+}
+
+.brambley-observatory .bo-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(12,16,14,.72), rgba(12,16,14,.43) 40%, rgba(12,16,14,.08) 75%),
+    linear-gradient(0deg, rgba(12,16,14,.60), rgba(12,16,14,.03) 65%);
+}
+
+.brambley-observatory .bo-nav {
+  position: absolute;
+  top: 14px;
+  right: var(--bo-gutter);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brambley-observatory .bo-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--bo-cream);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  line-height: 1.2;
+}
+
+.brambley-observatory .bo-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.brambley-observatory .bo-hero-content {
+  position: relative;
+  padding-block: 72px 52px;
+}
+
+.brambley-observatory .bo-eyebrow {
+  margin: 0 0 17px;
+  color: #dedfd6;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+.brambley-observatory .bo-hero h1 {
+  margin: 0;
+  color: #f3f1e9;
+  font-size: clamp(46px, 4.8vw, 70px);
+  line-height: .96;
+  letter-spacing: -.04em;
+}
+
+.brambley-observatory .bo-hero h1 span {
+  display: block;
+}
+
+.brambley-observatory .bo-hero-subtitle {
+  max-width: 620px;
+  margin: 20px 0 0;
+  color: #f1efe7;
+  font: italic 20px/1.5 Georgia, "Times New Roman", serif;
+}
+
+.brambley-observatory .bo-hero-topics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  color: #d0d7d2;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+.brambley-observatory .bo-hero-topics i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.brambley-observatory .bo-scroll {
+  position: absolute;
+  right: var(--bo-gutter);
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  color: var(--bo-cream);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+}
+
+.brambley-observatory .bo-scroll b {
+  font-size: 19px;
+  font-weight: 400;
+}
+
+/* Section labels: no numbering */
+.brambley-observatory .bo-section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #5f665f;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .18em;
+}
+
+.brambley-observatory .bo-section-label::before {
+  content: "";
+  width: 48px;
+  height: 1px;
+  flex: 0 0 48px;
+  background: currentColor;
+  opacity: .55;
+}
+
+.brambley-observatory .bo-section-label.light {
+  color: #bfc6bc;
+}
+
+/* Instruments first; natural heading wrap rather than a forced break */
+.brambley-observatory .bo-instruments {
+  padding: 58px 0 68px;
+  background: var(--bo-charcoal);
+}
+
+.brambley-observatory .bo-section-heading {
+  margin: 0 0 28px;
+}
+
+.brambley-observatory .bo-section-heading h2 {
+  margin: 22px 0 0;
+  color: var(--bo-cream);
+  font-size: clamp(30px, 3.05vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -.03em;
+}
+
+.brambley-observatory .bo-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.brambley-observatory .bo-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--bo-line);
+  background: var(--bo-charcoal-2);
+}
+
+.brambley-observatory .bo-card-image {
+  position: relative;
+  display: block;
+  flex: none;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 2;
+  overflow: hidden;
+  isolation: isolate;
+  background: #1b2b34;
+  color: var(--bo-cream);
+}
+
+.brambley-observatory .bo-card-image > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  object-fit: cover;
+  object-position: center;
+  transform: none;
+}
+
+.brambley-observatory .bo-weather-image > img {
+  object-position: center 47%;
+  transition: transform .35s ease;
+}
+
+.brambley-observatory .bo-card-image-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgba(9,12,10,.5), transparent 55%);
+}
+
+.brambley-observatory .bo-card-tag {
+  position: absolute;
+  z-index: 1;
+  left: 18px;
+  bottom: 16px;
+  padding: 7px 10px;
+  color: var(--bo-cream);
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(16,20,17,.8);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .14em;
+}
+
+/* Seismic crop: main trace sits through the lower quarter. */
+.brambley-observatory .bo-seismic-image {
+  --bo-seismic-crop-y: 55.5%;
+}
+
+.brambley-observatory .bo-card .bo-seismic-image > img.bo-seismic-source {
+  object-position: center var(--bo-seismic-crop-y);
+  transform: none;
+  transition: none;
+}
+
+.brambley-observatory .bo-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 26px 28px 28px;
+}
+
+.brambley-observatory .bo-card h3 {
+  margin: 0 0 16px;
+  color: var(--bo-cream);
+  font-size: 33px;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+
+.brambley-observatory .bo-card-body > p {
+  margin: 0 0 24px;
+  color: #c1c5bf;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.brambley-observatory .bo-card-links {
+  margin-top: auto;
+  border-top: 1px solid var(--bo-line);
+}
+
+.brambley-observatory .bo-card-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  padding-block: 8px;
+  border-bottom: 1px solid var(--bo-line);
+  color: #e0e3dd;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .12em;
+}
+
+.brambley-observatory .bo-card-links a b {
+  flex: none;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.brambley-observatory .bo-card-links a:hover {
+  color: #fff;
+  background: rgba(255,255,255,.04);
+}
+
+/* Personal story after the cards. */
+.brambley-observatory .bo-intro {
+  padding: 68px 0 64px;
+  background: var(--bo-paper);
+  color: var(--bo-ink);
+}
+
+.brambley-observatory .bo-intro h2 {
+  max-width: 24ch;
+  margin: 24px 0 32px;
+  color: var(--bo-ink);
+  font-size: clamp(33px, 3.5vw, 50px);
+  line-height: 1.12;
+  letter-spacing: -.03em;
+}
+
+.brambley-observatory .bo-intro-copy {
+  max-width: 730px;
+  margin-left: auto;
+}
+
+.brambley-observatory .bo-intro-copy p {
+  margin: 0 0 22px;
+  color: #3f463f;
+  font: 17.5px/1.8 Georgia, "Times New Roman", serif;
+}
+
+.brambley-observatory .bo-intro-copy p:last-child {
+  margin-bottom: 0;
+}
+
+/* Compact Field Observations section. */
+.brambley-observatory .bo-field {
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  min-height: 395px;
+  background: var(--bo-paper);
+  color: var(--bo-ink);
+}
+
+.brambley-observatory .bo-field-image {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.brambley-observatory .bo-field-image > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.brambley-observatory .bo-field-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 42px clamp(32px, 4vw, 72px);
+}
+
+.brambley-observatory .bo-field h2 {
+  margin: 22px 0 18px;
+  color: var(--bo-ink);
+  font-size: clamp(34px, 3.2vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.brambley-observatory .bo-field-content > p {
+  max-width: 520px;
+  margin: 0;
+  color: #414841;
+  font: 16px/1.7 Georgia, "Times New Roman", serif;
+}
+
+/* Small geographic close, without a repeated Observatory logo */
+.brambley-observatory .bo-footer {
+  padding: 28px var(--bo-gutter) 30px;
+  background: var(--bo-charcoal);
+  text-align: center;
+}
+
+.brambley-observatory .bo-footer-rule {
+  width: 44px;
+  height: 1px;
+  margin: 0 auto 14px;
+  background: rgba(255,255,255,.22);
+}
+
+.brambley-observatory .bo-footer-location {
+  color: #aeb6ac;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .16em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brambley-observatory .bo-card:hover .bo-weather-image > img {
+    transform: scale(1.025);
+  }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .brambley-observatory .bo-card-grid {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  .brambley-observatory .bo-field {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .brambley-observatory .bo-field-image {
+    height: 320px;
+  }
+
+  .brambley-observatory .bo-field-content {
+    padding: 40px var(--bo-gutter) 46px;
+  }
+
+  .brambley-observatory .bo-field-content > p {
+    max-width: 650px;
+  }
+}
+
+/* Mobile: no fixed tall hero and no clipped title. */
+@media (max-width: 600px) {
+  .brambley-observatory {
+    --bo-gutter: 20px;
+  }
+
+  .brambley-observatory .bo-nav {
+    top: 10px;
+    gap: 22px;
+  }
+
+  .brambley-observatory .bo-hero {
+    min-height: 350px;
+  }
+
+  .brambley-observatory .bo-hero-content {
+    padding-block: 76px 68px;
+  }
+
+  .brambley-observatory .bo-hero-image {
+    object-position: 58% center;
+  }
+
+  .brambley-observatory .bo-hero-shade {
+    background: linear-gradient(0deg, rgba(12,16,14,.83), rgba(12,16,14,.44) 70%, rgba(12,16,14,.25));
+  }
+
+  .brambley-observatory .bo-eyebrow {
+    font-size: 9px;
+    letter-spacing: .15em;
+  }
+
+  .brambley-observatory .bo-hero h1 {
+    font-size: clamp(30px, 8.7vw, 50px);
+    line-height: 1;
+  }
+
+  .brambley-observatory .bo-hero-subtitle {
+    max-width: 32ch;
+    font-size: 18px;
+    margin-top: 18px;
+  }
+
+  .brambley-observatory .bo-hero-topics {
+    gap: 8px;
+    font-size: 8px;
+    letter-spacing: .08em;
+    margin-top: 20px;
+  }
+
+  .brambley-observatory .bo-scroll {
+    bottom: 10px;
+  }
+
+  .brambley-observatory .bo-section-label {
+    gap: 12px;
+    font-size: 9px;
+  }
+
+  .brambley-observatory .bo-section-label::before {
+    width: 32px;
+    flex-basis: 32px;
+  }
+
+  .brambley-observatory .bo-instruments {
+    padding: 42px 0 48px;
+  }
+
+  .brambley-observatory .bo-section-heading {
+    margin-bottom: 24px;
+  }
+
+  .brambley-observatory .bo-section-heading h2 {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .brambley-observatory .bo-card-grid {
+    gap: 24px;
+  }
+
+  .brambley-observatory .bo-card-image {
+    aspect-ratio: 8 / 5;
+  }
+
+  .brambley-observatory .bo-seismic-image {
+    --bo-seismic-crop-y: 51.63%;
+  }
+
+  .brambley-observatory .bo-card-body {
+    padding: 24px 22px;
+  }
+
+  .brambley-observatory .bo-card h3 {
+    font-size: 30px;
+  }
+
+  .brambley-observatory .bo-card-body > p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .brambley-observatory .bo-card-links a {
+    font-size: 10px;
+    letter-spacing: .09em;
+  }
+
+  .brambley-observatory .bo-card-tag {
+    left: 14px;
+    bottom: 13px;
+    font-size: 8px;
+  }
+
+  .brambley-observatory .bo-intro {
+    padding: 46px 0 48px;
+  }
+
+  .brambley-observatory .bo-intro h2 {
+    font-size: 34px;
+    margin-bottom: 26px;
+  }
+
+  .brambley-observatory .bo-intro-copy p {
+    font-size: 16.5px;
+    line-height: 1.76;
+  }
+
+  .brambley-observatory .bo-field-image {
+    height: 280px;
+  }
+
+  .brambley-observatory .bo-field-content {
+    padding: 36px 20px 42px;
+  }
+
+  .brambley-observatory .bo-field h2 {
+    font-size: 36px;
+  }
+
+  .brambley-observatory .bo-footer-location {
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+}

@@ -1,0 +1,11 @@
+.about-page-body { margin: 0; background: #f3e6ca; }
+.brambley-about-page { position: relative; width: 100%; max-width: none; margin: 0; padding: 0; background: #f3e6ca; overflow: hidden; }
+.brambley-about-folio { position: relative; width: min(100%, 1200px); max-width: 1200px; margin: 0 auto; padding: 0; background: #f3e6ca; line-height: 0; }
+.brambley-about-art { display: block; width: 100%; height: auto; max-width: 100%; margin: 0; padding: 0; object-fit: contain; object-position: center top; user-select: none; -webkit-user-drag: none; }
+.brambley-return-home { box-sizing: border-box; width: min(100%, 1200px); margin: 0 auto; padding: 46px 24px 60px; display: flex; justify-content: center; align-items: center; background: #f3e6ca; }
+.brambley-return-home a { color: #243021; text-decoration: none; font-family: "Cormorant Garamond", "Garamond", "Baskerville", "Times New Roman", serif; font-size: clamp(17px, 1.2vw, 21px); font-weight: 500; letter-spacing: .055em; line-height: 1.2; transition: opacity 160ms ease; }
+.brambley-return-home a:hover { opacity: .68; }
+.brambley-return-home a:focus-visible { outline: 1px solid rgba(36,48,33,.65); outline-offset: 5px; }
+.brambley-return-home span { display: inline-block; margin-left: .22em; transition: transform 160ms ease; }
+.brambley-return-home a:hover span { transform: translateX(3px); }
+@media screen and (max-width: 767px) { .brambley-about-folio { width: 100%; max-width: none; } .brambley-about-art { width: 100%; height: auto; } }

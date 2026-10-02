@@ -1,0 +1,19 @@
+{
+  "name": "brambley-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build && npx wrangler@latest deploy"
+  },
+  "dependencies": {
+    "astro": "^7.3.5"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

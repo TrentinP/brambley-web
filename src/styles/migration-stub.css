@@ -1,0 +1,8 @@
+.migration-stub-body { margin: 0; background: #171b19; color: #f1efe7; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.migration-stub { min-height: 100vh; display: grid; place-items: center; padding: 48px 24px; }
+.migration-stub__inner { width: min(760px, 100%); border-top: 1px solid rgba(255,255,255,.18); border-bottom: 1px solid rgba(255,255,255,.18); padding: 46px 0; }
+.migration-stub__eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .18em; color: #bfc6bc; }
+.migration-stub h1 { margin: 18px 0 18px; font: 400 clamp(38px,6vw,64px)/1.05 Georgia,"Times New Roman",serif; }
+.migration-stub p { color: #c1c5bf; line-height: 1.75; max-width: 640px; }
+.migration-stub nav { display:flex; flex-wrap:wrap; gap:18px 28px; margin-top:32px; }
+.migration-stub a { color:#f1efe7; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.45); padding-bottom:3px; }

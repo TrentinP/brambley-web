@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/observatory.css';
+---
+<BaseLayout title="Brambley Observatory" description="Observations from the edge of the Olympic lowlands." bodyClass="observatory-page-body">
+<!-- Brambley Observatory landing page. Styles are embedded below for page isolation. -->
+<div class="brambley-observatory" id="brambley-observatory">
+
+  <!-- Compact photographic hero -->
+  <section class="bo-hero" aria-labelledby="bo-title">
+    <img class="bo-hero-image"
+      src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/73c3d739-8806-4964-a3f3-83e21af060e5/IMG_0698.JPEG?content-type=image%2Fjpeg"
+      alt="Snow-covered landscape at Brambley"
+      fetchpriority="high">
+    <div class="bo-hero-shade" aria-hidden="true"></div>
+
+    <nav class="bo-nav" aria-label="Brambley navigation">
+      <a href="/home">HOME</a>
+      <a href="/blog">NOTES</a>
+    </nav>
+
+    <div class="bo-hero-content bo-container">
+      <div class="bo-eyebrow">GRAYS HARBOR · WASHINGTON</div>
+      <h1 id="bo-title"><span>BRAMBLEY</span> <span>OBSERVATORY</span></h1>
+      <p class="bo-hero-subtitle">Observations from the edge of the Olympic lowlands</p>
+      <div class="bo-hero-topics">
+        <span>WEATHER</span><i aria-hidden="true"></i>
+        <span>SEISMOLOGY</span><i aria-hidden="true"></i>
+        <span>NATURAL PHENOMENA</span>
+      </div>
+    </div>
+
+    <a class="bo-scroll" href="#observatory-instruments" aria-label="Explore the instruments">
+      <span>EXPLORE</span><b aria-hidden="true">↓</b>
+    </a>
+  </section>
+
+  <!-- Instruments immediately follow the hero -->
+  <section class="bo-instruments" id="observatory-instruments" aria-labelledby="bo-instruments-title">
+    <div class="bo-container">
+      <div class="bo-section-heading">
+        <div class="bo-section-label light"><span>THE INSTRUMENTS</span></div>
+        <h2 id="bo-instruments-title">Continuous observations from Brambley.</h2>
+      </div>
+
+      <div class="bo-card-grid">
+        <article class="bo-card" aria-labelledby="bo-weather-title">
+          <a href="/wxstation" class="bo-card-image bo-weather-image" aria-label="Visit the weather station">
+            <img
+              src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/4a5f58da-4c7c-4d99-a98b-f749c6bef5a1/IMG_9989.JPG?content-type=image%2Fjpeg"
+              alt="Clouds over the pond at Brambley" loading="lazy" decoding="async">
+            <div class="bo-card-image-shade" aria-hidden="true"></div>
+            <span class="bo-card-tag">METEOROLOGY</span>
+          </a>
+          <div class="bo-card-body">
+            <h3 id="bo-weather-title">Weather Station</h3>
+            <p>Continuous observations of temperature, humidity, atmospheric pressure,
+              precipitation, wind, solar radiation and other conditions at Brambley.</p>
+            <div class="bo-card-links">
+              <a href="/wxstation"><span>LIVE OBSERVATIONS</span><b aria-hidden="true">→</b></a>
+              <a href="/weather-data-archive"><span>WEATHER ARCHIVE</span><b aria-hidden="true">→</b></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bo-card" aria-labelledby="bo-seismic-title">
+          <a href="/seismic" class="bo-card-image bo-seismic-image" aria-label="Visit the seismic station">
+            <!-- The source image stays intact. CSS crops it inside the card so the
+                 main earthquake trace runs through the lower quarter. -->
+            <img class="bo-seismic-source"
+              src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/1205586c-222c-4af3-a340-bc54ec08c438/IMG_6719.PNG?content-type=image%2Fpng"
+              alt="Earthquake waveform recorded at Brambley"
+              width="946" height="2048" loading="lazy" decoding="async">
+            <span class="bo-card-tag">SEISMOLOGY</span>
+          </a>
+          <div class="bo-card-body">
+            <h3 id="bo-seismic-title">Seismic Station</h3>
+            <p>A Raspberry Shake seismometer continuously records ground motion at
+              Brambley, capturing earthquakes from the Pacific Northwest and,
+              occasionally, much farther away.</p>
+            <div class="bo-card-links">
+              <a href="/seismic"><span>LIVE SEISMOMETER</span><b aria-hidden="true">→</b></a>
+              <a href="/quakearchive"><span>EARTHQUAKE ARCHIVE</span><b aria-hidden="true">→</b></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- The personal story follows the instrument destinations -->
+  <section class="bo-intro" id="why-observe" aria-labelledby="bo-story-title">
+    <div class="bo-intro-inner bo-container">
+      <div class="bo-section-label"><span>WHY OBSERVE?</span></div>
+      <h2 id="bo-story-title">A few more data points in a very long record.</h2>
+      <div class="bo-intro-copy">
+        <p>Many years ago, I was walking on the Scripps Pier in La Jolla when I
+          read the story of oceanographer George McEwen. Beginning in the early
+          twentieth century, McEwen kept handwritten records of ocean temperature
+          and salinity off the pier. At the time, he was one of very few people
+          making such observations along the Pacific Rim. Today, the data he
+          collected is vital to our understanding of how the ocean is evolving.</p>
+        <p>The story inspired me to think about what data I could record and
+          preserve that might one day prove valuable to our understanding of how
+          the Pacific Northwest is changing over time. Where could I add data
+          points to areas of scientific research?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compact Field Observations section; no metadata line -->
+  <section class="bo-field" aria-labelledby="bo-field-title">
+    <div class="bo-field-image">
+      <img
+        src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/566dd344-1a22-4efe-8dd6-29b17c6c3c54/IMG_0680.JPG?content-type=image%2Fjpeg"
+        alt="Atmospheric optical phenomenon observed at Brambley" loading="lazy" decoding="async">
+    </div>
+    <div class="bo-field-content">
+      <div class="bo-section-label"><span>FIELD OBSERVATIONS</span></div>
+      <h2 id="bo-field-title">Beyond the<br>instruments.</h2>
+      <p>Instruments tell only part of the story. Field Observations will collect
+        less formal records from around Brambley: unusual weather and atmospheric
+        phenomena, seasonal changes, astronomical events, and other occurrences
+        worth noting as the landscape changes over time.</p>
+    </div>
+  </section>
+
+  <footer class="bo-footer">
+    <div class="bo-footer-rule" aria-hidden="true"></div>
+    <div class="bo-footer-location">GRAYS HARBOR, WASHINGTON · 47° N</div>
+  </footer>
+</div>
+</BaseLayout>
