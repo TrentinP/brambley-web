@@ -8,6 +8,8 @@ const notes = defineCollection({
     date: z.coerce.date(),
     subtitle: z.string().optional(),
     excerpt: z.string().optional(),
+    category: z.enum(['garden', 'science', 'chronicle']).optional(),
+    topic: z.string().optional(),
     draft: z.boolean().default(false)
   })
 });
