@@ -1,0 +1,20 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: 'column' | 'wide';
+}
+
+const {
+  src,
+  alt,
+  caption,
+  width = 'wide'
+} = Astro.props;
+---
+
+<figure class={`journal-illustration journal-illustration--${width}`}>
+  <img src={src} alt={alt} loading="lazy" />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
