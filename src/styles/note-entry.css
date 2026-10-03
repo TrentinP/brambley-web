@@ -17,53 +17,19 @@
     url('/assets/notes/entry-bottom.webp') center bottom / 1536px 38px no-repeat,
     url('/assets/notes/entry-left.webp') left 46px / 90px 1600px repeat-y,
     url('/assets/notes/entry-right.webp') right 46px / 90px 1600px repeat-y,
-    #ead9ba;
+    #ecdcbe;
 }
 
 .journal-entry-frame::before {
   content: "";
   position: absolute;
   z-index: 0;
-  top: 46px;
-  right: 90px;
-  bottom: 38px;
-  left: 90px;
+  top: 10px;
+  right: 20px;
+  bottom: 10px;
+  left: 20px;
   pointer-events: none;
-  background: url('/assets/notes/entry-paper-long.webp') center / 100% 100% no-repeat;
-
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      transparent 0,
-      #000 52px,
-      #000 calc(100% - 58px),
-      transparent 100%
-    ),
-    linear-gradient(
-      to right,
-      transparent 0,
-      #000 72px,
-      #000 calc(100% - 72px),
-      transparent 100%
-    );
-  -webkit-mask-composite: source-in;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      transparent 0,
-      #000 52px,
-      #000 calc(100% - 58px),
-      transparent 100%
-    ),
-    linear-gradient(
-      to right,
-      transparent 0,
-      #000 72px,
-      #000 calc(100% - 72px),
-      transparent 100%
-    );
-  mask-composite: intersect;
+  background: url('/assets/notes/entry-paper-feathered.webp') center / 100% 100% no-repeat;
 }
 
 .journal-entry-inner {
@@ -334,44 +300,10 @@
   }
 
   .journal-entry-frame::before {
-    top: 34px;
-    right: 20px;
-    bottom: 28px;
-    left: 20px;
-
-    -webkit-mask-image:
-      linear-gradient(
-        to bottom,
-        transparent 0,
-        #000 28px,
-        #000 calc(100% - 32px),
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
-        transparent 0,
-        #000 24px,
-        #000 calc(100% - 24px),
-        transparent 100%
-      );
-    -webkit-mask-composite: source-in;
-
-    mask-image:
-      linear-gradient(
-        to bottom,
-        transparent 0,
-        #000 28px,
-        #000 calc(100% - 32px),
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
-        transparent 0,
-        #000 24px,
-        #000 calc(100% - 24px),
-        transparent 100%
-      );
-    mask-composite: intersect;
+    top: 6px;
+    right: 6px;
+    bottom: 6px;
+    left: 6px;
   }
 
   .journal-entry-inner {
