@@ -16,19 +16,14 @@
     url('/assets/notes/entry-bottom.webp') center bottom / 1536px 38px no-repeat,
     url('/assets/notes/entry-left.webp') left 46px / 90px 1600px repeat-y,
     url('/assets/notes/entry-right.webp') right 46px / 90px 1600px repeat-y,
-    #2a180f;
+    url('/assets/notes/entry-paper-long.webp') center top / 100% 100% no-repeat;
 }
 
 .journal-entry-inner {
   min-height: calc(100vh - 84px);
   padding: 0 110px 28px;
-  background:
-    linear-gradient(90deg, rgba(90,62,33,.06), transparent 5%, transparent 95%, rgba(90,62,33,.06)),
-    url('/assets/notes/entry-paper.webp') center top / 460px 600px repeat;
-  box-shadow:
-    inset 0 0 34px rgba(87,60,31,.10),
-    inset 18px 0 18px -18px rgba(72,45,23,.22),
-    inset -18px 0 18px -18px rgba(72,45,23,.22);
+  background: transparent;
+  box-shadow: none;
 }
 
 .journal-entry-chrome {
@@ -116,8 +111,8 @@
 .journal-entry-ornament,
 .journal-entry-footer-ornament {
   display: block;
-  width: 367px;
-  max-width: 52%;
+  width: 390px;
+  max-width: 56%;
   height: auto;
   margin: 10px auto 8px;
   user-select: none;
@@ -260,7 +255,8 @@
       1536px 46px,
       1536px 38px,
       54px 960px,
-      54px 960px;
+      54px 960px,
+      100% 100%;
   }
 
   .journal-entry-inner {
@@ -285,7 +281,7 @@
       url('/assets/notes/entry-bottom.webp') center bottom / 1120px 28px no-repeat,
       url('/assets/notes/entry-left.webp') left 34px / 20px 356px repeat-y,
       url('/assets/notes/entry-right.webp') right 34px / 20px 356px repeat-y,
-      #2a180f;
+      url('/assets/notes/entry-paper-long.webp') center top / 100% 100% no-repeat;
   }
 
   .journal-entry-inner {
