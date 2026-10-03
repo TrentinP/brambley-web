@@ -1,0 +1,89 @@
+---
+import JournalIllustration from './JournalIllustration.astro';
+import { notesCategories, type NoteCategory } from '../lib/notesTaxonomy';
+
+interface Props {
+  title: string;
+  date: Date;
+  subtitle?: string;
+  category?: NoteCategory;
+  heroArt?: string;
+  heroArtAlt?: string;
+  heroArtCaption?: string;
+}
+
+const {
+  title,
+  date,
+  subtitle,
+  category = 'chronicle',
+  heroArt,
+  heroArtAlt = '',
+  heroArtCaption
+} = Astro.props;
+
+const journal = notesCategories[category];
+const returnHref = `/blog/${category}/`;
+const returnLabel = `Return to ${journal.title}`;
+
+const formatDate = (value: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(value);
+---
+
+<main class={`approved-entry-page approved-entry-page--${category}`}>
+  <div class="approved-entry-sheet">
+    <div class="approved-entry-topbar">
+      <a class="approved-entry-return approved-entry-return--top" href={returnHref}>
+        ← {returnLabel}
+      </a>
+
+      <nav class="approved-entry-nav" aria-label="Brambley navigation">
+        <a href="/">Home</a>
+        <a href="/observatory">Observatory</a>
+        <a href="/about">About</a>
+        <a href="/blog" aria-current="page">Notes</a>
+      </nav>
+    </div>
+
+    <article class="approved-entry-article">
+      <header class="approved-entry-header">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <h1>{title}</h1>
+        <img
+          class="approved-entry-divider"
+          src="/assets/notes/entry-divider-2x.webp"
+          alt=""
+          aria-hidden="true"
+        />
+        {subtitle && <p class="approved-entry-subtitle">{subtitle}</p>}
+      </header>
+
+      {heroArt && (
+        <JournalIllustration
+          src={heroArt}
+          alt={heroArtAlt}
+          caption={heroArtCaption}
+          width="wide"
+        />
+      )}
+
+      <div class="approved-entry-body">
+        <slot />
+      </div>
+
+      <footer class="approved-entry-footer">
+        <img
+          class="approved-entry-divider approved-entry-divider--footer"
+          src="/assets/notes/entry-divider-2x.webp"
+          alt=""
+          aria-hidden="true"
+        />
+        <a class="approved-entry-return" href={returnHref}>← {returnLabel}</a>
+      </footer>
+    </article>
+  </div>
+</main>
