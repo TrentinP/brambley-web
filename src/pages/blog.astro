@@ -1,31 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BrambleyJournalNav from '../components/BrambleyJournalNav.astro';
 import '../styles/notes.css';
-
-const journals = [
-  {
-    slug: 'garden',
-    title: 'Garden Book',
-    caption: 'Plantings, orchard notes, and seasonal work.',
-    image: '/assets/notes/book-garden.webp',
-    imageClass: 'journal-book-image--garden'
-  },
-  {
-    slug: 'science',
-    title: 'Science Field Notes',
-    caption: 'Meteorology, seismology, and observations.',
-    image: '/assets/notes/book-science.webp',
-    imageClass: 'journal-book-image--science'
-  },
-  {
-    slug: 'chronicle',
-    title: 'Chronicle',
-    caption: 'Projects, happenings, and records.',
-    image: '/assets/notes/book-chronicle.webp',
-    imageClass: 'journal-book-image--chronicle'
-  }
-];
 ---
 
 <BaseLayout
@@ -33,48 +8,24 @@ const journals = [
   description="Field journals, observations, and records kept around Brambley."
   bodyClass="notes-page-body"
 >
-  <main class="notes-landing">
-    <BrambleyJournalNav active="notes" />
-
-    <header class="notes-hero">
-      <h1>Notes from Brambley</h1>
+  <main class="approved-notes-page">
+    <div class="approved-notes-frame">
       <img
-        class="notes-ornament"
-        src="/assets/notes/ornament.webp"
-        alt=""
-        aria-hidden="true"
+        class="approved-notes-art"
+        src="/assets/notes/approved-landing-2x.webp"
+        alt="Notes from Brambley with three illustrated journals: Garden Book, Science Field Notes, and Chronicle"
       />
-      <p>Field journals, observations, and records kept around Brambley.</p>
-    </header>
 
-    <section class="journal-collection" aria-label="Brambley journals">
-      {journals.map((journal) => (
-        <a
-          class={`journal-volume journal-volume--${journal.slug}`}
-          href={`/blog/${journal.slug}/`}
-          aria-label={`Open ${journal.title}`}
-        >
-          <span class="journal-book-frame">
-            <img
-              class={`journal-book-image ${journal.imageClass}`}
-              src={journal.image}
-              alt={journal.title}
-            />
-          </span>
+      <nav class="approved-art-nav" aria-label="Brambley navigation">
+        <a class="approved-nav approved-nav--home" href="/" aria-label="Home"></a>
+        <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory"></a>
+        <a class="approved-nav approved-nav--about" href="/about" aria-label="About"></a>
+        <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
+      </nav>
 
-          <span class="journal-volume-caption">
-            <span>{journal.caption}</span>
-            <span class="journal-volume-arrow" aria-hidden="true">→</span>
-          </span>
-        </a>
-      ))}
-    </section>
-
-    <img
-      class="notes-landscape"
-      src="/assets/notes/landscape.webp"
-      alt=""
-      aria-hidden="true"
-    />
+      <a class="approved-journal-link approved-journal-link--garden" href="/blog/garden/" aria-label="Open Garden Book"></a>
+      <a class="approved-journal-link approved-journal-link--science" href="/blog/science/" aria-label="Open Science Field Notes"></a>
+      <a class="approved-journal-link approved-journal-link--chronicle" href="/blog/chronicle/" aria-label="Open Chronicle"></a>
+    </div>
   </main>
 </BaseLayout>
