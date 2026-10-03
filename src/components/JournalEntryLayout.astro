@@ -1,0 +1,78 @@
+---
+import JournalIllustration from './JournalIllustration.astro';
+import { notesCategories, type NoteCategory } from '../lib/notesTaxonomy';
+
+interface Props {
+  title: string;
+  date: Date;
+  subtitle?: string;
+  category?: NoteCategory;
+  heroArt?: string;
+  heroArtAlt?: string;
+  heroArtCaption?: string;
+  description?: string;
+}
+
+const {
+  title,
+  date,
+  subtitle,
+  category = 'chronicle',
+  heroArt,
+  heroArtAlt = '',
+  heroArtCaption,
+} = Astro.props;
+
+const journal = notesCategories[category];
+const returnHref = `/blog/${category}/`;
+const returnLabel = `Return to ${journal.title}`;
+
+const formatDate = (value: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(value);
+---
+
+<main class={`journal-entry-page journal-entry-page--${category}`}>
+  <div class="journal-entry-sheet">
+    <div class="journal-entry-chrome">
+      <a class="journal-entry-return" href={returnHref}>← {returnLabel}</a>
+
+      <nav class="journal-entry-site-nav" aria-label="Brambley navigation">
+        <a href="/">Home</a>
+        <a href="/observatory">Observatory</a>
+        <a href="/about">About</a>
+        <a href="/blog" aria-current="page">Notes</a>
+      </nav>
+    </div>
+
+    <article class="journal-entry-article">
+      <header class="journal-entry-header">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <h1>{title}</h1>
+        <span class="journal-entry-rule" aria-hidden="true"></span>
+        {subtitle && <p class="journal-entry-subtitle">{subtitle}</p>}
+      </header>
+
+      {heroArt && (
+        <JournalIllustration
+          src={heroArt}
+          alt={heroArtAlt}
+          caption={heroArtCaption}
+          width="wide"
+        />
+      )}
+
+      <div class="journal-entry-body">
+        <slot />
+      </div>
+
+      <footer class="journal-entry-footer">
+        <span class="journal-entry-footer-rule" aria-hidden="true"></span>
+        <a href={returnHref}>← {returnLabel}</a>
+      </footer>
+    </article>
+  </div>
+</main>

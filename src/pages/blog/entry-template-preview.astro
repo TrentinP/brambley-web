@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalEntryLayout from '../../components/JournalEntryLayout.astro';
+import JournalIllustration from '../../components/JournalIllustration.astro';
+import '../../styles/notes.css';
+import '../../styles/note-entry.css';
+
+const previewDate = new Date('2026-10-03T12:00:00');
+---
+
+<BaseLayout
+  title="Entry Template Preview | Brambley Notes"
+  description="Preview of the Brambley Chronicle article template."
+  bodyClass="notes-page-body"
+>
+  <JournalEntryLayout
+    title="Finding Brambley"
+    date={previewDate}
+    subtitle="A bit of luck, a lot of looking, and a place that felt right."
+    category="chronicle"
+  >
+    <p>
+      What began with a California tax bill turned into a four-year search. I knew I wanted
+      land, trees, and water, but I wasn’t sure where. I spent a lot of time looking at maps,
+      reading about different areas, and driving more back roads than I can count. Most
+      places were close, but not quite right.
+    </p>
+
+    <p>
+      The first time I drove down the lane at Brambley, I remember thinking that it felt
+      different. The meadows, the alder trees, the pond, and the way the light came through
+      the trees all felt like the right mix. It needed work, but that was part of the appeal.
+      There was room for gardens, an orchard, and a hundred small projects.
+    </p>
+
+    <JournalIllustration
+      src="/assets/notes/approved-mobile-landscape.webp"
+      alt="A pale watercolor landscape of the Brambley surroundings"
+      caption="An example of optional artwork placed within an entry."
+      width="wide"
+    />
+
+    <h2>A longer entry simply keeps going</h2>
+
+    <p>
+      There is no fixed page height. Additional paragraphs, headings, photographs, or
+      illustrations continue down the parchment while the journal frame stretches with the
+      article. The text remains live and editable throughout.
+    </p>
+
+    <p>
+      The result should feel like a quiet reading page inside the same journal world as the
+      index, without turning the prose itself into an image.
+    </p>
+  </JournalEntryLayout>
+</BaseLayout>
