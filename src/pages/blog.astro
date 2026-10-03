@@ -1,17 +1,65 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/migration-stub.css';
+import { getCollection } from 'astro:content';
+import '../styles/notes.css';
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
 ---
-<BaseLayout title="Notes | Brambley" bodyClass="migration-stub-body">
-  <main class="migration-stub">
-    <div class="migration-stub__inner">
-      <div class="migration-stub__eyebrow">BRAMBLEY MIGRATION PREVIEW</div>
-      <h1>Notes</h1>
-      <p>The Brambley journal is reserved here for migration after the core site and Observatory pages are stable.</p>
-      <nav aria-label="Migration preview navigation">
+<BaseLayout
+  title="Notes | Brambley"
+  description="Notes from Brambley."
+  bodyClass="notes-page-body"
+>
+  <main class="notes-page">
+    <header class="notes-header">
+      <nav class="notes-nav" aria-label="Brambley navigation">
         <a href="/">Brambley</a>
         <a href="/observatory">Observatory</a>
       </nav>
-    </div>
+
+      <div class="notes-header-inner">
+        <div class="notes-eyebrow">BRAMBLEY</div>
+        <h1>Notes</h1>
+        <p>Occasional notes from around Brambley.</p>
+      </div>
+    </header>
+
+    <section class="notes-index" aria-label="Notes">
+      {notes.length > 0 ? (
+        <div class="notes-list">
+          {notes.map((note) => (
+            <article class="notes-list-item">
+              <time datetime={note.data.date.toISOString()}>
+                {formatDate(note.data.date)}
+              </time>
+              <h2>
+                <a href={`/blog/${note.id}/`}>{note.data.title}</a>
+              </h2>
+              {note.data.subtitle && <p class="notes-subtitle">{note.data.subtitle}</p>}
+              {note.data.excerpt && <p class="notes-excerpt">{note.data.excerpt}</p>}
+              <a class="notes-read-link" href={`/blog/${note.id}/`}>
+                Read note →
+              </a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="notes-empty">
+          <p>The existing Notes entries have not yet been imported from Squarespace.</p>
+        </div>
+      )}
+    </section>
+
+    <footer class="notes-footer">
+      <a href="/">← Return to Brambley</a>
+    </footer>
   </main>
 </BaseLayout>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import '../../styles/notes.css';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => !data.draft);
+
+  return notes.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'notes'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+---
+<BaseLayout
+  title={`${entry.data.title} | Brambley Notes`}
+  description={entry.data.excerpt ?? 'A note from Brambley.'}
+  bodyClass="notes-page-body"
+>
+  <main class="note-page">
+    <nav class="note-top-nav" aria-label="Notes navigation">
+      <a href="/blog">← Notes</a>
+      <a href="/">Brambley</a>
+    </nav>
+
+    <article class="note-article">
+      <header class="note-header">
+        <time datetime={entry.data.date.toISOString()}>
+          {formatDate(entry.data.date)}
+        </time>
+        <h1>{entry.data.title}</h1>
+        {entry.data.subtitle && <p>{entry.data.subtitle}</p>}
+      </header>
+
+      <div class="note-body">
+        <Content />
+      </div>
+    </article>
+
+    <footer class="note-footer">
+      <a href="/blog">← Return to Notes</a>
+    </footer>
+  </main>
+</BaseLayout>
