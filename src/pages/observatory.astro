@@ -3,13 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/observatory.css';
 ---
 <BaseLayout title="Brambley Observatory" description="Observations from the edge of the Olympic lowlands." bodyClass="observatory-page-body">
-<!-- Brambley Observatory landing page. Styles are embedded below for page isolation. -->
+<!-- Brambley Observatory landing page. Assets and styles are hosted locally in this Astro project. -->
 <div class="brambley-observatory" id="brambley-observatory">
 
   <!-- Compact photographic hero -->
   <section class="bo-hero" aria-labelledby="bo-title">
     <img class="bo-hero-image"
-      src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/73c3d739-8806-4964-a3f3-83e21af060e5/IMG_0698.JPEG?content-type=image%2Fjpeg"
+      src="/assets/observatory/hero-winter.jpg"
       alt="Snow-covered landscape at Brambley"
       fetchpriority="high">
     <div class="bo-hero-shade" aria-hidden="true"></div>
@@ -47,7 +47,7 @@ import '../styles/observatory.css';
         <article class="bo-card" aria-labelledby="bo-weather-title">
           <a href="/wxstation" class="bo-card-image bo-weather-image" aria-label="Visit the weather station">
             <img
-              src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/4a5f58da-4c7c-4d99-a98b-f749c6bef5a1/IMG_9989.JPG?content-type=image%2Fjpeg"
+              src="/assets/observatory/weather-pond.jpg"
               alt="Clouds over the pond at Brambley" loading="lazy" decoding="async">
             <div class="bo-card-image-shade" aria-hidden="true"></div>
             <span class="bo-card-tag">METEOROLOGY</span>
@@ -68,7 +68,7 @@ import '../styles/observatory.css';
             <!-- The source image stays intact. CSS crops it inside the card so the
                  main earthquake trace runs through the lower quarter. -->
             <img class="bo-seismic-source"
-              src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/1205586c-222c-4af3-a340-bc54ec08c438/IMG_6719.PNG?content-type=image%2Fpng"
+              src="/assets/observatory/seismic-waveform.png"
               alt="Earthquake waveform recorded at Brambley"
               width="946" height="2048" loading="lazy" decoding="async">
             <span class="bo-card-tag">SEISMOLOGY</span>
@@ -112,7 +112,7 @@ import '../styles/observatory.css';
   <section class="bo-field" aria-labelledby="bo-field-title">
     <div class="bo-field-image">
       <img
-        src="https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/566dd344-1a22-4efe-8dd6-29b17c6c3c54/IMG_0680.JPG?content-type=image%2Fjpeg"
+        src="/assets/observatory/field-observation.jpg"
         alt="Atmospheric optical phenomenon observed at Brambley" loading="lazy" decoding="async">
     </div>
     <div class="bo-field-content">
