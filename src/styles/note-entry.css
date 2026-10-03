@@ -10,21 +10,21 @@
   width: min(100%, 1536px);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 52px 90px;
+  padding: 46px 90px 38px;
   background:
-    url('/assets/notes/entry-left.webp') left top / 90px 1024px repeat-y,
-    url('/assets/notes/entry-right.webp') right top / 90px 1024px repeat-y,
-    url('/assets/notes/entry-top.webp') center top / 1536px 52px repeat-x,
-    url('/assets/notes/entry-bottom.webp') center bottom / 1536px 52px repeat-x,
+    url('/assets/notes/entry-top.webp') center top / 1536px 46px no-repeat,
+    url('/assets/notes/entry-bottom.webp') center bottom / 1536px 38px no-repeat,
+    url('/assets/notes/entry-left.webp') left 46px / 90px 1600px repeat-y,
+    url('/assets/notes/entry-right.webp') right 46px / 90px 1600px repeat-y,
     #2a180f;
 }
 
 .journal-entry-inner {
-  min-height: calc(100vh - 104px);
-  padding: 0 110px 18px;
+  min-height: calc(100vh - 84px);
+  padding: 0 110px 28px;
   background:
-    linear-gradient(90deg, rgba(90,62,33,.08), transparent 5%, transparent 95%, rgba(90,62,33,.08)),
-    url('/assets/notes/entry-paper.webp') center top / 220px 250px repeat;
+    linear-gradient(90deg, rgba(90,62,33,.06), transparent 5%, transparent 95%, rgba(90,62,33,.06)),
+    url('/assets/notes/entry-paper.webp') center top / 460px 600px repeat;
   box-shadow:
     inset 0 0 34px rgba(87,60,31,.10),
     inset 18px 0 18px -18px rgba(72,45,23,.22),
@@ -243,7 +243,7 @@
 .journal-entry-footer {
   width: min(790px, 100%);
   margin: 18px auto 0;
-  padding-bottom: 5px;
+  padding-bottom: 14px;
   text-align: center;
 }
 
@@ -257,10 +257,10 @@
     padding-left: 54px;
     padding-right: 54px;
     background-size:
-      54px 1024px,
-      54px 1024px,
-      1536px 52px,
-      1536px 52px;
+      1536px 46px,
+      1536px 38px,
+      54px 960px,
+      54px 960px;
   }
 
   .journal-entry-inner {
@@ -279,18 +279,18 @@
 
 @media (max-width: 700px) {
   .journal-entry-frame {
-    padding: 38px 20px;
+    padding: 34px 20px 28px;
     background:
-      url('/assets/notes/entry-left.webp') left top / 20px 1024px repeat-y,
-      url('/assets/notes/entry-right.webp') right top / 20px 1024px repeat-y,
-      url('/assets/notes/entry-top.webp') center top / 1120px 38px repeat-x,
-      url('/assets/notes/entry-bottom.webp') center bottom / 1120px 38px repeat-x,
+      url('/assets/notes/entry-top.webp') center top / 1120px 34px no-repeat,
+      url('/assets/notes/entry-bottom.webp') center bottom / 1120px 28px no-repeat,
+      url('/assets/notes/entry-left.webp') left 34px / 20px 356px repeat-y,
+      url('/assets/notes/entry-right.webp') right 34px / 20px 356px repeat-y,
       #2a180f;
   }
 
   .journal-entry-inner {
-    min-height: calc(100vh - 76px);
-    padding: 0 22px 12px;
+    min-height: calc(100vh - 62px);
+    padding: 0 22px 18px;
   }
 
   .journal-entry-chrome {
