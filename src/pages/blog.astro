@@ -1,61 +1,94 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
 import '../styles/notes.css';
-
-const notes = (await getCollection('notes', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }).format(date);
+import '../styles/notes-landing-mobile.css';
 ---
+
 <BaseLayout
-  title="Notes | Brambley"
-  description="Notes from Brambley."
+  title="Notes from Brambley"
+  description="Field journals, observations, and records kept around Brambley."
   bodyClass="notes-page-body"
 >
-  <main class="notes-page">
-    <header class="notes-header">
-      <nav class="notes-nav" aria-label="Brambley navigation">
-        <a href="/">Brambley</a>
-        <a href="/observatory">Observatory</a>
-      </nav>
+  <main class="approved-notes-page">
+    <section class="approved-notes-desktop" aria-label="Notes from Brambley">
+      <div class="approved-notes-frame">
+        <img
+          class="approved-notes-art"
+          src="/assets/notes/approved-landing-2x.webp"
+          alt="Notes from Brambley with three illustrated journals: Garden Book, Science Field Notes, and Chronicle"
+        />
 
-      <div class="notes-header-inner">
-        <div class="notes-eyebrow">BRAMBLEY</div>
-        <h1>Notes</h1>
-        <p>Occasional notes from around Brambley.</p>
+        <nav class="approved-art-nav" aria-label="Brambley navigation">
+          <a class="approved-nav approved-nav--home" href="/" aria-label="Home"></a>
+          <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory"></a>
+          <a class="approved-nav approved-nav--about" href="/about" aria-label="About"></a>
+          <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
+        </nav>
+
+        <a class="approved-journal-link approved-journal-link--garden" href="/blog/garden/" aria-label="Open Garden Book"></a>
+        <a class="approved-journal-link approved-journal-link--science" href="/blog/science/" aria-label="Open Science Field Notes"></a>
+        <a class="approved-journal-link approved-journal-link--chronicle" href="/blog/chronicle/" aria-label="Open Chronicle"></a>
       </div>
-    </header>
-
-    <section class="notes-index" aria-label="Notes">
-      {notes.length > 0 ? (
-        <div class="notes-list">
-          {notes.map((note) => (
-            <article class="notes-list-item">
-              <time datetime={note.data.date.toISOString()}>
-                {formatDate(note.data.date)}
-              </time>
-              <h2>
-                <a href={`/blog/${note.id}/`}>{note.data.title}</a>
-              </h2>
-              {note.data.subtitle && <p class="notes-subtitle">{note.data.subtitle}</p>}
-              {note.data.excerpt && <p class="notes-excerpt">{note.data.excerpt}</p>}
-              <a class="notes-read-link" href={`/blog/${note.id}/`}>
-                Read note →
-              </a>
-            </article>
-          ))}
-        </div>
-      ) : null}
     </section>
 
-    <footer class="notes-footer">
-      <a href="/">← Return to Brambley</a>
-    </footer>
+    <section class="approved-notes-mobile" aria-label="Notes from Brambley">
+      <nav class="approved-mobile-nav" aria-label="Brambley navigation">
+        <a href="/">Home</a>
+        <a href="/observatory">Observatory</a>
+        <a href="/about">About</a>
+        <a href="/blog" aria-current="page">Notes</a>
+      </nav>
+
+      <img
+        class="approved-mobile-header"
+        src="/assets/notes/approved-mobile-header.webp"
+        alt="Notes from Brambley. Field journals, observations, and records kept around Brambley."
+      />
+
+      <div class="approved-mobile-journals">
+        <a class="approved-mobile-journal" href="/blog/garden/">
+          <img
+            class="approved-mobile-book approved-mobile-book--garden"
+            src="/assets/notes/approved-mobile-garden.webp"
+            alt="Garden Book"
+          />
+          <span class="approved-mobile-caption">
+            <span>Plantings, orchard notes, and seasonal work.</span>
+            <span class="approved-mobile-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        <a class="approved-mobile-journal" href="/blog/science/">
+          <img
+            class="approved-mobile-book approved-mobile-book--science"
+            src="/assets/notes/approved-mobile-science.webp"
+            alt="Science Field Notes"
+          />
+          <span class="approved-mobile-caption">
+            <span>Meteorology, seismology, and observations.</span>
+            <span class="approved-mobile-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        <a class="approved-mobile-journal" href="/blog/chronicle/">
+          <img
+            class="approved-mobile-book approved-mobile-book--chronicle"
+            src="/assets/notes/approved-mobile-chronicle.webp"
+            alt="Chronicle"
+          />
+          <span class="approved-mobile-caption">
+            <span>Projects, happenings, and records.</span>
+            <span class="approved-mobile-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+      </div>
+
+      <img
+        class="approved-mobile-landscape"
+        src="/assets/notes/approved-mobile-landscape.webp"
+        alt=""
+        aria-hidden="true"
+      />
+    </section>
   </main>
 </BaseLayout>

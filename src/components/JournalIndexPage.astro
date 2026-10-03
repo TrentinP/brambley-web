@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { notesCategories, type NoteCategory } from '../lib/notesTaxonomy';
+import '../styles/notes.css';
+
+interface Props {
+  category: NoteCategory;
+}
+
+const { category } = Astro.props;
+const config = notesCategories[category];
+
+const artwork: Record<NoteCategory, string> = {
+  garden: '/assets/notes/approved-garden-2x.webp',
+  science: '/assets/notes/approved-science-2x.webp',
+  chronicle: '/assets/notes/approved-chronicle-2x.webp'
+};
+---
+
+<BaseLayout
+  title={`${config.title} | Notes from Brambley`}
+  description={config.subtitle}
+  bodyClass="notes-page-body"
+>
+  <main class="approved-notes-page">
+    <div class="approved-notes-frame">
+      <img
+        class="approved-notes-art"
+        src={artwork[category]}
+        alt={`${config.title} illustrated index spread`}
+      />
+
+      <nav class="approved-art-nav" aria-label="Brambley navigation">
+        <a class="approved-nav approved-nav--home" href="/" aria-label="Home"></a>
+        <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory"></a>
+        <a class="approved-nav approved-nav--about" href="/about" aria-label="About"></a>
+        <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
+      </nav>
+    </div>
+  </main>
+</BaseLayout>

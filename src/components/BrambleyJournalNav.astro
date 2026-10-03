@@ -1,0 +1,14 @@
+---
+interface Props {
+  active?: 'home' | 'observatory' | 'about' | 'notes';
+}
+
+const { active = 'notes' } = Astro.props;
+---
+
+<nav class="journal-nav" aria-label="Brambley navigation">
+  <a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+  <a href="/observatory" aria-current={active === 'observatory' ? 'page' : undefined}>Observatory</a>
+  <a href="/about" aria-current={active === 'about' ? 'page' : undefined}>About</a>
+  <a href="/blog" aria-current={active === 'notes' ? 'page' : undefined}>Notes</a>
+</nav>
