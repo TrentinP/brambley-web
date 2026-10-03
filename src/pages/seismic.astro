@@ -1,17 +1,138 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/migration-stub.css';
+import '../styles/seismic.css';
 ---
-<BaseLayout title="Seismic Station | Brambley" bodyClass="migration-stub-body">
-  <main class="migration-stub">
-    <div class="migration-stub__inner">
-      <div class="migration-stub__eyebrow">BRAMBLEY MIGRATION PREVIEW</div>
-      <h1>Seismic Station</h1>
-      <p>The existing Raspberry Shake display and recent-capture feed will be migrated here from the current GitHub-backed workflow.</p>
-      <nav aria-label="Migration preview navigation">
-        <a href="/">Brambley</a>
-        <a href="/observatory">Observatory</a>
+<BaseLayout
+  title="Seismic Station | Brambley Observatory"
+  description="Ground motion recorded from Grays Harbor, Washington by Brambley's Raspberry Shake station R1C99."
+  bodyClass="seismic-page-body"
+>
+  <Fragment slot="head">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    />
+  </Fragment>
+
+  <main class="seismic-page">
+    <section class="seismic-hero">
+      <nav class="seismic-nav" aria-label="Brambley navigation">
+        <a href="/observatory">OBSERVATORY</a>
+        <a href="/">HOME</a>
       </nav>
-    </div>
+
+      <div class="seismic-shell seismic-hero-inner">
+        <div class="seismic-eyebrow">BRAMBLEY OBSERVATORY · SEISMOLOGY</div>
+        <h1>BRAMBLEY<br />SEISMIC STATION</h1>
+        <p>Ground motion recorded from Grays Harbor, Washington</p>
+        <div class="seismic-channel">
+          <span>STATION R1C99</span>
+          <i aria-hidden="true"></i>
+          <span>EHZ · VERTICAL</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="seismic-light seismic-live">
+      <div class="seismic-shell">
+        <div class="seismic-section-label">LIVE FROM BRAMBLEY</div>
+        <div class="seismic-heading-row">
+          <div>
+            <h2>The ground beneath us.</h2>
+            <p class="seismic-lede">
+              A Raspberry Shake seismometer continuously records ground motion at Brambley.
+              The display below shows the station's vertical EHZ channel.
+            </p>
+          </div>
+          <a
+            class="seismic-text-link"
+            href="https://dataview.raspberryshake.org/#/AM/R1C99/00/EHZ"
+            target="_blank"
+            rel="noopener"
+          >OPEN FULL VIEW →</a>
+        </div>
+
+        <div class="seismic-live-frame">
+          <iframe
+            src="https://dataview.raspberryshake.org/#/embed/AM/R1C99/00/EHZ"
+            title="Live Raspberry Shake waveform for Brambley station R1C99"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <div class="seismic-live-meta">
+          <span>AM · R1C99 · 00 · EHZ</span>
+          <span>VERTICAL GROUND MOTION</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="seismic-light seismic-region">
+      <div class="seismic-shell">
+        <div class="seismic-section-label">REGIONAL SEISMICITY</div>
+        <div class="seismic-region-grid">
+          <div class="seismic-region-copy">
+            <h2>Earthquakes across the region.</h2>
+            <p>
+              Recent M1.0+ earthquakes across a broad Pacific Northwest view,
+              drawn from the USGS earthquake catalog. No Brambley location marker
+              is shown.
+            </p>
+
+            <div class="seismic-activity-card" aria-live="polite">
+              <small>7-DAY REGIONAL ACTIVITY</small>
+              <strong id="seismic-week-count">Loading…</strong>
+              <span id="seismic-week-trend">Comparing with the previous seven days</span>
+            </div>
+          </div>
+
+          <div class="seismic-map-wrap">
+            <div id="seismic-regional-map" class="seismic-map" aria-label="Regional earthquake map"></div>
+            <div id="seismic-map-status" class="seismic-map-status">Loading USGS earthquake data…</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seismic-recorded">
+      <div class="seismic-shell">
+        <div class="seismic-section-label seismic-section-label-light">WHAT BRAMBLEY RECORDED</div>
+        <div class="seismic-recorded-head">
+          <div>
+            <h2>M3.0+ events captured here.</h2>
+            <p>
+              Regional earthquakes are shown here when the automated workflow
+              publishes a Brambley waveform from station R1C99.
+            </p>
+          </div>
+          <a class="seismic-dark-link" href="/quakearchive">ARCHIVE OF NOTABLE EARTHQUAKES →</a>
+        </div>
+
+        <div id="brambley-recent-captures" class="brambley-recent-captures">
+          <div id="brambley-recent-captures-list"></div>
+          <div id="brambley-recent-captures-empty" class="brambley-recent-empty" hidden>
+            No M3.0+ regional earthquakes from the past seven days produced a published Brambley waveform.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="seismic-footer">
+      <div class="seismic-shell">
+        <div class="seismic-footer-rule"></div>
+        <div class="seismic-footer-row">
+          <span>BRAMBLEY OBSERVATORY · GRAYS HARBOR, WASHINGTON</span>
+          <a href="/observatory">RETURN TO OBSERVATORY →</a>
+        </div>
+      </div>
+    </footer>
   </main>
+
+  <script
+    is:inline
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+  <script is:inline src="/scripts/seismic.js"></script>
 </BaseLayout>

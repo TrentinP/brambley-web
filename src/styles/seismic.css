@@ -1,0 +1,449 @@
+.seismic-page-body {
+  margin: 0;
+  background: #171b19;
+  color: #222723;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.seismic-page {
+  --charcoal: #171b19;
+  --charcoal-2: #202622;
+  --ink: #222723;
+  --cream: #f1efe7;
+  --paper: #e9e6dc;
+  --paper-2: #f1efe7;
+  --olive: #667552;
+  --line-dark: rgba(255,255,255,.16);
+  --line-light: rgba(34,39,35,.18);
+  width: 100%;
+  overflow: hidden;
+}
+
+.seismic-page * { box-sizing: border-box; }
+
+.seismic-shell {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.seismic-hero {
+  position: relative;
+  min-height: 430px;
+  display: flex;
+  align-items: flex-end;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(105,124,112,.18), transparent 34%),
+    linear-gradient(135deg, #111512 0%, #202622 58%, #151916 100%);
+  color: var(--cream);
+}
+
+.seismic-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: var(--line-dark);
+}
+
+.seismic-nav {
+  position: absolute;
+  z-index: 2;
+  top: 28px;
+  right: max(24px, calc((100vw - 1180px)/2));
+  display: flex;
+  gap: 28px;
+}
+
+.seismic-nav a {
+  color: #dfe3dc;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.seismic-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0 64px;
+}
+
+.seismic-eyebrow,
+.seismic-section-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  color: #768262;
+}
+
+.seismic-eyebrow { color: #c8d1b4; }
+
+.seismic-hero h1,
+.seismic-page h2,
+.brambley-recent-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.seismic-hero h1 {
+  max-width: 760px;
+  margin: 14px 0 18px;
+  font-size: clamp(48px, 6.2vw, 86px);
+  line-height: .94;
+  letter-spacing: -.045em;
+}
+
+.seismic-hero p {
+  margin: 0;
+  color: #c9cec9;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 2vw, 25px);
+  font-style: italic;
+}
+
+.seismic-channel {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 27px;
+  color: #9ca49d;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.seismic-channel i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #9ca49d;
+}
+
+.seismic-light {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+.seismic-live { padding: 82px 0 88px; }
+
+.seismic-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 42px;
+  margin: 20px 0 34px;
+}
+
+.seismic-page h2 {
+  margin: 0;
+  font-size: clamp(38px, 4.2vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.seismic-lede,
+.seismic-region-copy > p,
+.seismic-recorded-head p {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: #555c55;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.seismic-text-link,
+.seismic-dark-link,
+.seismic-footer a {
+  flex: none;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.seismic-live-frame {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border: 1px solid #b9bbb3;
+  background: #111;
+}
+
+.seismic-live-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.seismic-live-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 12px;
+  color: #697068;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.seismic-region {
+  padding: 86px 0 96px;
+  border-top: 1px solid var(--line-light);
+}
+
+.seismic-region-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.5fr);
+  gap: 54px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.seismic-region-copy h2 { margin-top: 0; }
+
+.seismic-activity-card {
+  margin-top: 34px;
+  padding: 22px 0 0;
+  border-top: 1px solid #aeb2aa;
+}
+
+.seismic-activity-card small {
+  display: block;
+  color: #667552;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.seismic-activity-card strong {
+  display: block;
+  margin: 8px 0 4px;
+  color: #252a26;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.seismic-activity-card span {
+  color: #686f68;
+  font-size: 12px;
+}
+
+.seismic-map-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.seismic-map {
+  width: 100%;
+  height: 520px;
+  border: 1px solid #b9bbb3;
+  background: #d9ddd6;
+}
+
+.seismic-map-status {
+  margin-top: 9px;
+  color: #6b706a;
+  font-size: 11px;
+}
+
+.seismic-map .leaflet-popup-content-wrapper,
+.seismic-map .leaflet-popup-tip {
+  color: #242925;
+  background: #f7f5ee;
+}
+
+.seismic-map .leaflet-popup-content {
+  margin: 12px 14px;
+  font: 12px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.seismic-map .leaflet-popup-content strong {
+  font-size: 14px;
+}
+
+.seismic-map .leaflet-popup-content a {
+  color: #4f6238;
+}
+
+.seismic-recorded {
+  padding: 88px 0 92px;
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.seismic-section-label-light { color: #a7b495; }
+
+.seismic-recorded-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 42px;
+  margin: 20px 0 18px;
+}
+
+.seismic-recorded-head p { color: #aeb4ae; }
+
+.seismic-dark-link {
+  color: #dfe3dc;
+}
+
+.brambley-recent-captures {
+  margin-top: 34px;
+}
+
+.brambley-recent-card {
+  padding: 28px 0 32px;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+
+.brambley-recent-card:last-child {
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.brambley-recent-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 20px;
+  margin-bottom: 16px;
+  color: #8f9690;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.brambley-recent-title {
+  margin: 0 0 8px;
+  color: #f1efe7;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.16;
+}
+
+.brambley-recent-time {
+  margin-bottom: 20px;
+  color: #aeb4ae;
+  font-size: 12px;
+}
+
+.brambley-recent-waveform-wrap {
+  background: #f2f0e9;
+  border: 1px solid rgba(255,255,255,.12);
+  overflow: hidden;
+}
+
+.brambley-recent-waveform {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.brambley-recent-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 14px;
+  color: #8e958f;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.brambley-recent-bottom a {
+  color: #d8dcd6;
+  text-decoration: none;
+}
+
+.brambley-recent-bottom a:hover { color: #fff; }
+
+.brambley-recent-empty {
+  padding: 24px 0;
+  border-top: 1px solid rgba(255,255,255,.15);
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  color: #9aa09a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.seismic-footer {
+  padding: 38px 0 44px;
+  background: #111512;
+  color: #8e958f;
+}
+
+.seismic-footer-rule {
+  width: 120px;
+  height: 1px;
+  margin-bottom: 18px;
+  background: rgba(255,255,255,.16);
+}
+
+.seismic-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.seismic-footer a { color: #cfd5ce; }
+
+@media (max-width: 860px) {
+  .seismic-heading-row,
+  .seismic-recorded-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .seismic-region-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seismic-map { height: 440px; }
+}
+
+@media (max-width: 620px) {
+  .seismic-shell {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .seismic-nav {
+    right: 14px;
+    top: 20px;
+    gap: 18px;
+  }
+
+  .seismic-hero {
+    min-height: 390px;
+  }
+
+  .seismic-hero-inner {
+    padding: 90px 0 48px;
+  }
+
+  .seismic-live,
+  .seismic-region,
+  .seismic-recorded {
+    padding-top: 62px;
+    padding-bottom: 68px;
+  }
+
+  .seismic-live-frame { height: 420px; }
+
+  .seismic-live-meta,
+  .seismic-footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .seismic-map { height: 390px; }
+}
