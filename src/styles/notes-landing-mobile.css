@@ -1,0 +1,166 @@
+.approved-notes-desktop {
+  display: block;
+}
+
+.approved-notes-mobile {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .approved-notes-page {
+    overflow-x: hidden;
+  }
+
+  .approved-notes-desktop {
+    display: none;
+  }
+
+  .approved-notes-mobile {
+    position: relative;
+    display: block;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 72px 18px 122px;
+    background: #f3e6ca;
+    color: #263025;
+    font-family: Garamond, "Times New Roman", serif;
+  }
+
+  .approved-mobile-nav {
+    position: absolute;
+    z-index: 5;
+    top: 22px;
+    right: 17px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    white-space: nowrap;
+  }
+
+  .approved-mobile-nav a {
+    color: #283226;
+    text-decoration: none;
+    font-family: Garamond, "Times New Roman", serif;
+    font-size: 10px;
+    line-height: 1.2;
+    letter-spacing: .065em;
+  }
+
+  .approved-mobile-nav a[aria-current="page"] {
+    padding-bottom: 4px;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .approved-mobile-nav a:focus-visible,
+  .approved-mobile-journal:focus-visible {
+    outline: 1px solid rgba(36,48,33,.68);
+    outline-offset: 5px;
+  }
+
+  .approved-mobile-header {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: min(138%, 610px);
+    max-width: none;
+    height: auto;
+    margin: 8px 0 18px 50%;
+    transform: translateX(-50%);
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .approved-mobile-journals {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 430px);
+    margin: 0 auto;
+    display: grid;
+    gap: 34px;
+  }
+
+  .approved-mobile-journal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #364035;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .approved-mobile-book {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .approved-mobile-book--garden {
+    width: min(100%, 430px);
+  }
+
+  .approved-mobile-book--science {
+    width: min(80%, 330px);
+  }
+
+  .approved-mobile-book--chronicle {
+    width: min(94%, 400px);
+  }
+
+  .approved-mobile-caption {
+    display: flex;
+    max-width: 340px;
+    margin-top: 4px;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    font-size: 17px;
+    line-height: 1.35;
+  }
+
+  .approved-mobile-arrow {
+    font-size: 25px;
+    line-height: 1;
+  }
+
+  .approved-mobile-landscape {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    bottom: 0;
+    display: block;
+    width: 150%;
+    max-width: none;
+    height: auto;
+    transform: translateX(-50%);
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .approved-notes-mobile {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .approved-mobile-nav {
+    right: 14px;
+    gap: 10px;
+  }
+
+  .approved-mobile-nav a {
+    font-size: 9px;
+  }
+
+  .approved-mobile-header {
+    width: 145%;
+  }
+
+  .approved-mobile-caption {
+    font-size: 16px;
+  }
+}

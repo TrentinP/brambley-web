@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/notes.css';
+import '../styles/notes-landing-mobile.css';
 ---
 
 <BaseLayout
@@ -9,23 +10,85 @@ import '../styles/notes.css';
   bodyClass="notes-page-body"
 >
   <main class="approved-notes-page">
-    <div class="approved-notes-frame">
-      <img
-        class="approved-notes-art"
-        src="/assets/notes/approved-landing-2x.webp"
-        alt="Notes from Brambley with three illustrated journals: Garden Book, Science Field Notes, and Chronicle"
-      />
+    <section class="approved-notes-desktop" aria-label="Notes from Brambley">
+      <div class="approved-notes-frame">
+        <img
+          class="approved-notes-art"
+          src="/assets/notes/approved-landing-2x.webp"
+          alt="Notes from Brambley with three illustrated journals: Garden Book, Science Field Notes, and Chronicle"
+        />
 
-      <nav class="approved-art-nav" aria-label="Brambley navigation">
-        <a class="approved-nav approved-nav--home" href="/" aria-label="Home"></a>
-        <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory"></a>
-        <a class="approved-nav approved-nav--about" href="/about" aria-label="About"></a>
-        <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
+        <nav class="approved-art-nav" aria-label="Brambley navigation">
+          <a class="approved-nav approved-nav--home" href="/" aria-label="Home"></a>
+          <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory"></a>
+          <a class="approved-nav approved-nav--about" href="/about" aria-label="About"></a>
+          <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
+        </nav>
+
+        <a class="approved-journal-link approved-journal-link--garden" href="/blog/garden/" aria-label="Open Garden Book"></a>
+        <a class="approved-journal-link approved-journal-link--science" href="/blog/science/" aria-label="Open Science Field Notes"></a>
+        <a class="approved-journal-link approved-journal-link--chronicle" href="/blog/chronicle/" aria-label="Open Chronicle"></a>
+      </div>
+    </section>
+
+    <section class="approved-notes-mobile" aria-label="Notes from Brambley">
+      <nav class="approved-mobile-nav" aria-label="Brambley navigation">
+        <a href="/">Home</a>
+        <a href="/observatory">Observatory</a>
+        <a href="/about">About</a>
+        <a href="/blog" aria-current="page">Notes</a>
       </nav>
 
-      <a class="approved-journal-link approved-journal-link--garden" href="/blog/garden/" aria-label="Open Garden Book"></a>
-      <a class="approved-journal-link approved-journal-link--science" href="/blog/science/" aria-label="Open Science Field Notes"></a>
-      <a class="approved-journal-link approved-journal-link--chronicle" href="/blog/chronicle/" aria-label="Open Chronicle"></a>
-    </div>
+      <img
+        class="approved-mobile-header"
+        src="/assets/notes/approved-mobile-header.webp"
+        alt="Notes from Brambley. Field journals, observations, and records kept around Brambley."
+      />
+
+      <div class="approved-mobile-journals">
+        <a class="approved-mobile-journal" href="/blog/garden/">
+          <img
+            class="approved-mobile-book approved-mobile-book--garden"
+            src="/assets/notes/approved-mobile-garden.webp"
+            alt="Garden Book"
+          />
+          <span class="approved-mobile-caption">
+            <span>Plantings, orchard notes, and seasonal work.</span>
+            <span class="approved-mobile-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        <a class="approved-mobile-journal" href="/blog/science/">
+          <img
+            class="approved-mobile-book approved-mobile-book--science"
+            src="/assets/notes/approved-mobile-science.webp"
+            alt="Science Field Notes"
+          />
+          <span class="approved-mobile-caption">
+            <span>Meteorology, seismology, and observations.</span>
+            <span class="approved-mobile-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        <a class="approved-mobile-journal" href="/blog/chronicle/">
+          <img
+            class="approved-mobile-book approved-mobile-book--chronicle"
+            src="/assets/notes/approved-mobile-chronicle.webp"
+            alt="Chronicle"
+          />
+          <span class="approved-mobile-caption">
+            <span>Projects, happenings, and records.</span>
+            <span class="approved-mobile-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+      </div>
+
+      <img
+        class="approved-mobile-landscape"
+        src="/assets/notes/approved-mobile-landscape.webp"
+        alt=""
+        aria-hidden="true"
+      />
+    </section>
   </main>
 </BaseLayout>
