@@ -1,0 +1,55 @@
+name: Localize Observatory assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/localize-observatory-assets.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  localize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download Observatory assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/assets/observatory
+
+          curl -fL --retry 3 \
+            "https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/73c3d739-8806-4964-a3f3-83e21af060e5/IMG_0698.JPEG?content-type=image%2Fjpeg" \
+            -o public/assets/observatory/hero-winter.jpg
+
+          curl -fL --retry 3 \
+            "https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/4a5f58da-4c7c-4d99-a98b-f749c6bef5a1/IMG_9989.JPG?content-type=image%2Fjpeg" \
+            -o public/assets/observatory/weather-pond.jpg
+
+          curl -fL --retry 3 \
+            "https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/1205586c-222c-4af3-a340-bc54ec08c438/IMG_6719.PNG?content-type=image%2Fpng" \
+            -o public/assets/observatory/seismic-waveform.png
+
+          curl -fL --retry 3 \
+            "https://images.squarespace-cdn.com/content/6924ab5c9e143a2b135919b8/566dd344-1a22-4efe-8dd6-29b17c6c3c54/IMG_0680.JPG?content-type=image%2Fjpeg" \
+            -o public/assets/observatory/field-observation.jpg
+
+          file public/assets/observatory/*
+
+      - name: Commit localized assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/observatory
+          if git diff --cached --quiet; then
+            echo "No asset changes to commit."
+            exit 0
+          fi
+          git commit -m "Localize Observatory image assets"
+          git push
