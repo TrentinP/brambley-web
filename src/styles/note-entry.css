@@ -30,6 +30,40 @@
   left: 20px;
   pointer-events: none;
   background: url('/assets/notes/entry-paper-feathered.webp') center / 100% 100% no-repeat;
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 125px,
+      #000 calc(100% - 125px),
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      #000 185px,
+      #000 calc(100% - 185px),
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 125px,
+      #000 calc(100% - 125px),
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      #000 185px,
+      #000 calc(100% - 185px),
+      transparent 100%
+    );
+  mask-composite: intersect;
 }
 
 .journal-entry-inner {
@@ -304,6 +338,40 @@
     right: 6px;
     bottom: 6px;
     left: 6px;
+
+    -webkit-mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        #000 70px,
+        #000 calc(100% - 70px),
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 72px,
+        #000 calc(100% - 72px),
+        transparent 100%
+      );
+    -webkit-mask-composite: source-in;
+
+    mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        #000 70px,
+        #000 calc(100% - 70px),
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 72px,
+        #000 calc(100% - 72px),
+        transparent 100%
+      );
+    mask-composite: intersect;
   }
 
   .journal-entry-inner {
