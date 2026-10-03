@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - notes-journal-design
-    paths:
-      - .github/workflows/temporary-notes-preview.yml
+  workflow_dispatch:
 
 permissions:
   contents: read

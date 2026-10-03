@@ -1,10 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BrambleyJournalNav from '../components/BrambleyJournalNav.astro';
-import BlackberryOrnament from '../components/BlackberryOrnament.astro';
-import FolioLandscape from '../components/FolioLandscape.astro';
-import JournalCover from '../components/JournalCover.astro';
 import '../styles/notes.css';
+
+const journals = [
+  {
+    slug: 'garden',
+    title: 'Garden Book',
+    caption: 'Plantings, orchard notes, and seasonal work.',
+    cropClass: 'notes-mobile-book--garden'
+  },
+  {
+    slug: 'science',
+    title: 'Science Field Notes',
+    caption: 'Meteorology, seismology, and observations.',
+    cropClass: 'notes-mobile-book--science'
+  },
+  {
+    slug: 'chronicle',
+    title: 'Chronicle',
+    caption: 'Projects, happenings, and records.',
+    cropClass: 'notes-mobile-book--chronicle'
+  }
+];
 ---
 
 <BaseLayout
@@ -13,55 +30,68 @@ import '../styles/notes.css';
   bodyClass="notes-page-body"
 >
   <main class="notes-landing">
-    <BrambleyJournalNav active="notes" />
+    <section class="notes-approved-desktop" aria-label="Notes from Brambley">
+      <img
+        class="notes-approved-desktop-art"
+        src="/assets/notes/notes-landing.webp"
+        alt="Notes from Brambley, illustrated as three painted field journals on warm paper"
+      />
 
-    <header class="notes-landing-hero">
-      <h1>Notes from Brambley</h1>
-      <BlackberryOrnament />
-      <p>Field journals, observations, and records kept around Brambley.</p>
-    </header>
+      <nav class="art-nav-hotspots" aria-label="Brambley navigation">
+        <a class="art-nav-hotspot art-nav-hotspot--home" href="/" aria-label="Home"></a>
+        <a class="art-nav-hotspot art-nav-hotspot--observatory" href="/observatory" aria-label="Observatory"></a>
+        <a class="art-nav-hotspot art-nav-hotspot--about" href="/about" aria-label="About"></a>
+        <a class="art-nav-hotspot art-nav-hotspot--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
+      </nav>
 
-    <section class="journal-collection" aria-label="Brambley journals">
-      <a class="journal-volume journal-volume--garden" href="/blog/garden/">
-        <span class="journal-volume-art">
-          <svg class="pressed-leaf-art" viewBox="0 0 150 250" aria-hidden="true" focusable="false">
-            <path d="M90 229C76 181 62 128 47 66" />
-            <path d="M54 99C27 96 13 81 5 58c25 0 43 13 49 41Z" />
-            <path d="M62 128c-27 2-45-8-56-29 25-6 45 4 56 29Z" />
-            <path d="M72 160c-24 7-42 1-56-17 22-9 42-3 56 17Z" />
-            <path d="M48 68c8-27 25-42 49-45 0 25-16 42-49 45Z" />
-            <path d="M58 106c9-26 26-39 50-40-2 25-18 39-50 40Z" />
-            <path d="M67 139c10-23 26-34 48-33-3 22-19 34-48 33Z" />
-          </svg>
-          <JournalCover category="garden" />
-        </span>
-        <span class="journal-volume-caption">
-          <span>Plantings, orchard notes, and seasonal work.</span>
-          <span class="journal-volume-arrow" aria-hidden="true">→</span>
-        </span>
-      </a>
-
-      <a class="journal-volume journal-volume--science" href="/blog/science/">
-        <span class="journal-volume-art">
-          <JournalCover category="science" />
-        </span>
-        <span class="journal-volume-caption">
-          <span>Meteorology, seismology, and observations.</span>
-          <span class="journal-volume-arrow" aria-hidden="true">→</span>
-        </span>
-      </a>
-
-      <a class="journal-volume journal-volume--chronicle" href="/blog/chronicle/">
-        <span class="journal-volume-art">
-          <JournalCover category="chronicle" />
-        </span>
-        <span class="journal-volume-caption">
-          <span>Projects, happenings, and records.</span>
-          <span class="journal-volume-arrow" aria-hidden="true">→</span>
-        </span>
-      </a>
+      <a
+        class="desktop-journal-hotspot desktop-journal-hotspot--garden"
+        href="/blog/garden/"
+        aria-label="Open the Garden Book"
+      ></a>
+      <a
+        class="desktop-journal-hotspot desktop-journal-hotspot--science"
+        href="/blog/science/"
+        aria-label="Open Science Field Notes"
+      ></a>
+      <a
+        class="desktop-journal-hotspot desktop-journal-hotspot--chronicle"
+        href="/blog/chronicle/"
+        aria-label="Open the Chronicle"
+      ></a>
     </section>
 
-    <FolioLandscape />
+    <section class="notes-mobile" aria-label="Notes from Brambley">
+      <nav class="notes-mobile-nav" aria-label="Brambley navigation">
+        <a href="/">Home</a>
+        <a href="/observatory">Observatory</a>
+        <a href="/about">About</a>
+        <a href="/blog" aria-current="page">Notes</a>
+      </nav>
+
+      <header class="notes-mobile-header">
+        <h1>Notes from Brambley</h1>
+        <span class="notes-mobile-ornament" aria-hidden="true"></span>
+        <p>Field journals, observations, and records kept around Brambley.</p>
+      </header>
+
+      <div class="notes-mobile-journals">
+        {journals.map((journal) => (
+          <a class="notes-mobile-journal" href={`/blog/${journal.slug}/`}>
+            <span
+              class={`notes-mobile-book ${journal.cropClass}`}
+              role="img"
+              aria-label={journal.title}
+            ></span>
+            <span class="notes-mobile-caption">
+              <span>{journal.caption}</span>
+              <span class="notes-mobile-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <span class="notes-mobile-landscape" aria-hidden="true"></span>
+    </section>
   </main>
 </BaseLayout>
