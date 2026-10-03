@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BrambleyJournalNav from '../components/BrambleyJournalNav.astro';
 import '../styles/notes.css';
 
 const journals = [
@@ -7,19 +8,22 @@ const journals = [
     slug: 'garden',
     title: 'Garden Book',
     caption: 'Plantings, orchard notes, and seasonal work.',
-    cropClass: 'notes-mobile-book--garden'
+    image: '/assets/notes/book-garden.webp',
+    imageClass: 'journal-book-image--garden'
   },
   {
     slug: 'science',
     title: 'Science Field Notes',
     caption: 'Meteorology, seismology, and observations.',
-    cropClass: 'notes-mobile-book--science'
+    image: '/assets/notes/book-science.webp',
+    imageClass: 'journal-book-image--science'
   },
   {
     slug: 'chronicle',
     title: 'Chronicle',
     caption: 'Projects, happenings, and records.',
-    cropClass: 'notes-mobile-book--chronicle'
+    image: '/assets/notes/book-chronicle.webp',
+    imageClass: 'journal-book-image--chronicle'
   }
 ];
 ---
@@ -30,68 +34,47 @@ const journals = [
   bodyClass="notes-page-body"
 >
   <main class="notes-landing">
-    <section class="notes-approved-desktop" aria-label="Notes from Brambley">
+    <BrambleyJournalNav active="notes" />
+
+    <header class="notes-hero">
+      <h1>Notes from Brambley</h1>
       <img
-        class="notes-approved-desktop-art"
-        src="/assets/notes/notes-landing.webp"
-        alt="Notes from Brambley, illustrated as three painted field journals on warm paper"
+        class="notes-ornament"
+        src="/assets/notes/ornament.webp"
+        alt=""
+        aria-hidden="true"
       />
+      <p>Field journals, observations, and records kept around Brambley.</p>
+    </header>
 
-      <nav class="art-nav-hotspots" aria-label="Brambley navigation">
-        <a class="art-nav-hotspot art-nav-hotspot--home" href="/" aria-label="Home"></a>
-        <a class="art-nav-hotspot art-nav-hotspot--observatory" href="/observatory" aria-label="Observatory"></a>
-        <a class="art-nav-hotspot art-nav-hotspot--about" href="/about" aria-label="About"></a>
-        <a class="art-nav-hotspot art-nav-hotspot--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
-      </nav>
+    <section class="journal-collection" aria-label="Brambley journals">
+      {journals.map((journal) => (
+        <a
+          class={`journal-volume journal-volume--${journal.slug}`}
+          href={`/blog/${journal.slug}/`}
+          aria-label={`Open ${journal.title}`}
+        >
+          <span class="journal-book-frame">
+            <img
+              class={`journal-book-image ${journal.imageClass}`}
+              src={journal.image}
+              alt={journal.title}
+            />
+          </span>
 
-      <a
-        class="desktop-journal-hotspot desktop-journal-hotspot--garden"
-        href="/blog/garden/"
-        aria-label="Open the Garden Book"
-      ></a>
-      <a
-        class="desktop-journal-hotspot desktop-journal-hotspot--science"
-        href="/blog/science/"
-        aria-label="Open Science Field Notes"
-      ></a>
-      <a
-        class="desktop-journal-hotspot desktop-journal-hotspot--chronicle"
-        href="/blog/chronicle/"
-        aria-label="Open the Chronicle"
-      ></a>
+          <span class="journal-volume-caption">
+            <span>{journal.caption}</span>
+            <span class="journal-volume-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
     </section>
 
-    <section class="notes-mobile" aria-label="Notes from Brambley">
-      <nav class="notes-mobile-nav" aria-label="Brambley navigation">
-        <a href="/">Home</a>
-        <a href="/observatory">Observatory</a>
-        <a href="/about">About</a>
-        <a href="/blog" aria-current="page">Notes</a>
-      </nav>
-
-      <header class="notes-mobile-header">
-        <h1>Notes from Brambley</h1>
-        <span class="notes-mobile-ornament" aria-hidden="true"></span>
-        <p>Field journals, observations, and records kept around Brambley.</p>
-      </header>
-
-      <div class="notes-mobile-journals">
-        {journals.map((journal) => (
-          <a class="notes-mobile-journal" href={`/blog/${journal.slug}/`}>
-            <span
-              class={`notes-mobile-book ${journal.cropClass}`}
-              role="img"
-              aria-label={journal.title}
-            ></span>
-            <span class="notes-mobile-caption">
-              <span>{journal.caption}</span>
-              <span class="notes-mobile-arrow" aria-hidden="true">→</span>
-            </span>
-          </a>
-        ))}
-      </div>
-
-      <span class="notes-mobile-landscape" aria-hidden="true"></span>
-    </section>
+    <img
+      class="notes-landscape"
+      src="/assets/notes/landscape.webp"
+      alt=""
+      aria-hidden="true"
+    />
   </main>
 </BaseLayout>

@@ -1,6 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { notesCategories, type NoteCategory } from '../lib/notesTaxonomy';
+import BrambleyJournalNav from './BrambleyJournalNav.astro';
+import { notesCategories, type NoteCategory, type NoteTopic } from '../lib/notesTaxonomy';
 import '../styles/notes.css';
 
 interface Props {
@@ -10,11 +12,45 @@ interface Props {
 const { category } = Astro.props;
 const config = notesCategories[category];
 
+const notes = (await getCollection('notes', ({ data }) => !data.draft))
+  .filter((entry) => entry.data.category === category)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const configuredTopicNames = new Set(config.topics.map((topic) => topic.name));
+const extraTopicNames = Array.from(
+  new Set(
+    notes
+      .map((entry) => entry.data.topic ?? 'Other Notes')
+      .filter((topic) => !configuredTopicNames.has(topic))
+  )
+);
+
+const extraTopics: NoteTopic[] = extraTopicNames.map((name) => ({
+  name,
+  page: 'right'
+}));
+
+const topics = [...config.topics, ...extraTopics];
+const leftTopics = topics.filter((topic) => topic.page === 'left');
+const rightTopics = topics.filter((topic) => topic.page === 'right');
+
+const notesForTopic = (topic: string) =>
+  notes.filter((entry) => (entry.data.topic ?? 'Other Notes') === topic);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  }).format(date);
+
 const artwork: Record<NoteCategory, string> = {
-  garden: '/assets/notes/garden-index.webp',
-  science: '/assets/notes/science-index.webp',
-  chronicle: '/assets/notes/chronicle-index.webp'
+  garden: '/assets/notes/index-garden.webp',
+  science: '/assets/notes/index-science.webp',
+  chronicle: '/assets/notes/index-chronicle.webp'
 };
+
+const hasLiveIndex = notes.length > 0;
 ---
 
 <BaseLayout
@@ -23,28 +59,82 @@ const artwork: Record<NoteCategory, string> = {
   bodyClass="notes-page-body"
 >
   <main class={`journal-index-page journal-index-page--${category}`}>
-    <div class="journal-index-scroll">
-      <div class="journal-index-canvas">
+    <BrambleyJournalNav active="notes" />
+
+    <header class="journal-index-hero">
+      <h1>{config.title}</h1>
+      <img
+        class="notes-ornament"
+        src="/assets/notes/ornament.webp"
+        alt=""
+        aria-hidden="true"
+      />
+      <p>{config.subtitle}</p>
+    </header>
+
+    <section class="journal-index-stage" aria-label={`${config.title} index`}>
+      <div class={`journal-index-book ${hasLiveIndex ? 'journal-index-book--live' : ''}`}>
         <img
-          class="journal-index-approved-art"
+          class="journal-index-book-art"
           src={artwork[category]}
-          alt={`${config.title}, shown as an open illustrated journal index`}
+          alt={hasLiveIndex ? '' : `${config.title} illustrated index spread`}
+          aria-hidden={hasLiveIndex ? 'true' : undefined}
         />
 
-        <nav class="art-nav-hotspots art-nav-hotspots--index" aria-label="Brambley navigation">
-          <a class="art-nav-hotspot art-nav-hotspot--home" href="/" aria-label="Home"></a>
-          <a class="art-nav-hotspot art-nav-hotspot--observatory" href="/observatory" aria-label="Observatory"></a>
-          <a class="art-nav-hotspot art-nav-hotspot--about" href="/about" aria-label="About"></a>
-          <a class="art-nav-hotspot art-nav-hotspot--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
-        </nav>
+        {hasLiveIndex && (
+          <div class="journal-index-live" aria-label={`${config.title} entries`}>
+            <section class="journal-paper journal-paper--left">
+              <h2>INDEX</h2>
+              <span class="index-heading-rule" aria-hidden="true"></span>
 
-        <a
-          class="journal-index-return-hotspot"
-          href="/blog"
-          aria-label="Return to Notes"
-          title="Return to Notes"
-        ></a>
+              <div class="journal-topic-stack">
+                {leftTopics.map((topic) => (
+                  <section class="journal-topic">
+                    <h3><span>{topic.name}</span></h3>
+                    <div class="journal-topic-entries">
+                      {notesForTopic(topic.name).map((note) => (
+                        <a class="journal-index-entry" href={`/blog/${note.id}/`}>
+                          <time datetime={note.data.date.toISOString()}>
+                            {formatDate(note.data.date)}
+                          </time>
+                          <span>{note.data.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            </section>
+
+            <section class="journal-paper journal-paper--right">
+              <div class="journal-topic-stack journal-topic-stack--right">
+                {rightTopics.map((topic) => (
+                  <section class="journal-topic">
+                    <h3><span>{topic.name}</span></h3>
+                    <div class="journal-topic-entries">
+                      {notesForTopic(topic.name).map((note) => (
+                        <a class="journal-index-entry" href={`/blog/${note.id}/`}>
+                          <time datetime={note.data.date.toISOString()}>
+                            {formatDate(note.data.date)}
+                          </time>
+                          <span>{note.data.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
       </div>
-    </div>
+    </section>
+
+    <img
+      class="notes-landscape notes-landscape--index"
+      src="/assets/notes/landscape.webp"
+      alt=""
+      aria-hidden="true"
+    />
   </main>
 </BaseLayout>
