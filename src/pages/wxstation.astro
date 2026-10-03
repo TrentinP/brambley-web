@@ -1,17 +1,95 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/migration-stub.css';
+import '../styles/weather-station.css';
 ---
-<BaseLayout title="Weather Station | Brambley" bodyClass="migration-stub-body">
-  <main class="migration-stub">
-    <div class="migration-stub__inner">
-      <div class="migration-stub__eyebrow">BRAMBLEY MIGRATION PREVIEW</div>
-      <h1>Weather Station</h1>
-      <p>The existing Brambley weather interface and data pipeline are being moved here in the next migration phase.</p>
-      <nav aria-label="Migration preview navigation">
-        <a href="/">Brambley</a>
-        <a href="/observatory">Observatory</a>
-      </nav>
+<BaseLayout
+  title="Weather Station | Brambley Observatory"
+  description="Current and historical weather observations from Brambley in Grays Harbor, Washington."
+  bodyClass="weather-page-body"
+>
+  <main class="weather-page-shell">
+    <div id="brambley-weather" class="brw">
+    <section class="brw-current">
+      <div class="brw-title">
+        <div><span>BRAMBLEY OBSERVATORY</span><h2>Weather Station</h2><p>Grays Harbor, Washington</p></div>
+        <div><div class="brw-live"><i></i><span id="brw-status">Loading station</span></div><div class="brw-lastobs"><small>Last observation</small><span id="brw-time">--</span></div></div>
+      </div>
+      <div class="brw-now">
+        <div class="brw-tempblock"><strong id="brw-temp">--</strong><span id="brw-feels">Feels like --</span><div class="brw-temp-summary"><strong id="brw-daytemp">High -- · Low --</strong><br><span id="brw-daytemp-mean">Mean --</span></div></div>
+        <div class="brw-metrics">
+          <div><small>Wind</small><b id="brw-wind">--</b></div><div><small>Gust</small><b id="brw-gust">--</b></div><div><small>Humidity</small><b id="brw-humidity">--</b></div>
+          <div><small>Rain today</small><b id="brw-rain">--</b></div><div><small>Rain rate</small><b id="brw-rainrate">--</b></div><div><small>Dew point</small><b id="brw-dew">--</b></div>
+          <div><small>Pressure</small><b id="brw-pressure">--</b></div><div><small>Solar irradiance</small><b id="brw-solar">--</b></div><div><small>UV index</small><b id="brw-uv">--</b></div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="brw-section">
+      <div class="brw-sectionhead"><div><span>RECENT CONDITIONS</span><h3>Today at Brambley</h3></div></div>
+      <div class="brw-todaycharts">
+        <div class="brw-mini-chart"><div class="brw-mini-head"><div><small>RAINFALL RATE</small><h4>Rain through the day</h4></div><div class="brw-mini-stat" id="brw-rain-stat">MAX --</div></div><div class="brw-mini-canvas"><canvas id="brw-rainrate-chart"></canvas></div></div>
+        <div class="brw-mini-chart"><div class="brw-mini-head"><div><small>BAROGRAPH</small><h4>Pressure through the day</h4></div><div class="brw-mini-stat" id="brw-pressure-stat">HIGH --<br>LOW --</div></div><div class="brw-mini-canvas"><canvas id="brw-pressure-chart"></canvas></div></div>
+        <div class="brw-mini-chart"><div class="brw-mini-head"><div><small>HUMIDITY</small><h4>Humidity through the day</h4></div><div class="brw-mini-stat" id="brw-humidity-stat">HIGH --<br>LOW --</div></div><div class="brw-mini-canvas"><canvas id="brw-humidity-chart"></canvas></div></div>
+        <div class="brw-mini-chart"><div class="brw-mini-head"><div><small>WIND SPEED</small><h4>Wind through the day</h4></div><div class="brw-mini-stat" id="brw-wind-stat">MAX --</div></div><div class="brw-mini-canvas"><canvas id="brw-wind-chart"></canvas></div></div>
+        <div class="brw-mini-chart"><div class="brw-mini-head"><div><small>WIND DIRECTION</small><h4>Direction through the day</h4></div></div><div class="brw-mini-canvas"><canvas id="brw-winddir-chart"></canvas></div></div>
+        <div class="brw-mini-chart"><div class="brw-mini-head"><div><small>SOLAR IRRADIANCE</small><h4>Sunlight through the day</h4></div><div class="brw-mini-stat" id="brw-sun-stat">PEAK --</div></div><div class="brw-mini-canvas"><canvas id="brw-sun-chart"></canvas></div></div>
+      </div>
+    </section>
+    
+    <section class="brw-section">
+      <div class="brw-sectionhead"><div><span>CLIMATE AT BRAMBLEY</span><h3>Historical Temperatures</h3></div><p>Monthly observations extend back to 2007.</p></div>
+      <div class="brw-range" id="brw-temp-range"><button data-years="1">1 year</button><button data-years="5" class="active">5 years</button><button data-years="10">10 years</button><button data-years="all">All</button></div>
+      <div class="brw-chart"><canvas id="brw-temp-chart"></canvas></div>
+      <div class="brw-facts">
+        <div class="brw-fact"><small>HIGHEST RECORDED</small><strong>41.9°C</strong><p>June 27, 2021</p></div>
+        <div class="brw-fact"><small>LOWEST RECORDED</small><strong>-7.6°C</strong><p>January 12, 2024</p></div>
+        <div class="brw-fact"><small>WARMEST AVERAGE MONTH</small><strong id="brw-warm-month">--</strong><p id="brw-warm-detail">Across the monthly record</p></div>
+        <div class="brw-fact"><small>COLDEST AVERAGE MONTH</small><strong id="brw-cold-month">--</strong><p id="brw-cold-detail">Across the monthly record</p></div>
+      </div>
+    </section>
+    
+    <section class="brw-section">
+      <div class="brw-sectionhead"><div><span>PRECIPITATION</span><h3>Monthly Rainfall</h3></div><p>Observed monthly rainfall compared with the Brambley site average and NOAA’s 1991–2020 climate normal.</p></div>
+      <div class="brw-chart"><canvas id="brw-rain-chart"></canvas></div>
+      <p class="brw-note">NOAA normal: Hoquiam Bowerman Airport, 1991–2020 U.S. Climate Normals. The Brambley comparison remains the 2020–2025 site average.</p>
+      <div class="brw-facts">
+        <div class="brw-fact"><small>WETTEST DAY</small><strong>209.3 mm</strong><p>February 1, 2020</p></div>
+        <div class="brw-fact"><small>HIGHEST RAIN RATE</small><strong>79.8 mm/hr</strong><p>January 22, 2020 at 11:59 PM</p></div>
+        <div class="brw-fact"><small>LONGEST DRY SPELL</small><strong>33 days</strong><p>May 7 through June 8, 2023</p></div>
+        <div class="brw-fact"><small>WETTEST MONTH</small><strong id="brw-wet-month">--</strong><p id="brw-wet-detail">From the monthly record</p></div>
+      </div>
+    </section>
+    
+    <section class="brw-section brw-solar">
+      <div class="brw-sectionhead"><div><span>SOLAR &amp; LIGHT</span><h3>Observed Solar Resource</h3></div><p>Site-specific observations for understanding the practical solar resource at Brambley.</p></div>
+      <div class="brw-solar-summary">
+        <article><small>Today’s solar energy</small><strong id="brw-solar-today">--</strong><p>Integrated solar energy since local midnight.</p></article>
+        <article><small>Current month average</small><strong id="brw-solar-monthavg">--</strong><p>Average daily solar energy for observed days this month.</p></article>
+      </div>
+      <div class="brw-seasonal"><div class="brw-recordgrid">
+        <article><small>Highest average daily solar energy</small><strong id="brw-solar-highmonth">Building the record</strong><p id="brw-solar-highdetail">Seasonal comparison will appear after sufficient observations accumulate.</p></article>
+        <article><small>Lowest average daily solar energy</small><strong id="brw-solar-lowmonth">Building the record</strong><p id="brw-solar-lowdetail">At least 20 complete daily records are required for a calendar month.</p></article>
+      </div></div>
+      <div class="brw-solarhistory">
+        <div class="brw-subhead"><div><small>DAILY SOLAR ENERGY</small><h4>Solar energy over time</h4></div><p>Total observed solar energy received each day in kWh/m².</p></div>
+        <div class="brw-range" id="brw-solar-range"><button data-years="1" class="active">1 year</button><button data-years="5">5 years</button><button data-years="10">10 years</button><button data-years="all">All</button></div>
+        <div class="brw-chart brw-solar-chart"><canvas id="brw-solar-chart"></canvas></div>
+        <p class="brw-note" id="brw-solar-note">The daily solar archive begins with the historical station record.</p>
+        <div class="brw-facts">
+          <div class="brw-fact"><small>BRIGHTEST DAY</small><strong id="brw-solar-bright">--</strong><p id="brw-solar-bright-date">From the daily record</p></div>
+          <div class="brw-fact"><small>DARKEST VALID DAY</small><strong id="brw-solar-dark">--</strong><p id="brw-solar-dark-date">From the daily record</p></div>
+          <div class="brw-fact"><small>AVERAGE ANNUAL RESOURCE</small><strong id="brw-solar-annual">--</strong><p>Mean of substantially complete calendar years.</p></div>
+          <div class="brw-fact"><small>ILLUSTRATIVE PANEL OUTPUT</small><strong id="brw-solar-power">--</strong><p>Per m² of panel per year, assuming 20% conversion efficiency.</p></div>
+        </div>
+      </div>
+      <p class="brw-note">The station sensor provides useful local observations, but it is not represented here as a calibrated utility-grade pyranometer or formal photovoltaic site assessment.</p>
+    </section>
+    
+    <div class="brw-archive"><div><span>WEATHER DATA ARCHIVE</span><h3>Explore the observations</h3><p>Historical daily weather records are available from January 2020 onward, with monthly temperature records extending to 2007.</p></div><a href="/weather-data-archive">Open Weather Archive →</a></div>
+    <div class="brw-return"><a href="/observatory">← Return to Brambley Observatory</a></div>
     </div>
   </main>
+
+  <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script is:inline src="/scripts/weather-station.js"></script>
 </BaseLayout>
