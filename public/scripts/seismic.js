@@ -107,15 +107,34 @@
       }
 
       if (trendEl) {
-        if (previous.length === 0) {
-          trendEl.textContent = current.length
-            ? 'Above the previous seven-day count'
-            : 'No events in either seven-day period';
+        const currentCount = current.length;
+        const previousCount = previous.length;
+        const currentLabel = currentCount + ' M1.0+ event' + (currentCount === 1 ? '' : 's');
+        const previousLabel = previousCount + ' in the preceding seven days';
+
+        if (previousCount === 0 && currentCount === 0) {
+          trendEl.textContent =
+            'Regional seismicity is broadly unchanged: no M1.0+ earthquakes were cataloged in either seven-day period.';
+        } else if (previousCount === 0) {
+          trendEl.textContent =
+            'Regional seismicity is higher than in the previous seven days: ' +
+            currentLabel + ' were cataloged, compared with none in the preceding period.';
         } else {
-          const change = (current.length - previous.length) / previous.length;
-          if (change > 0.15) trendEl.textContent = 'Above the previous seven-day level';
-          else if (change < -0.15) trendEl.textContent = 'Below the previous seven-day level';
-          else trendEl.textContent = 'Near the previous seven-day level';
+          const change = (currentCount - previousCount) / previousCount;
+
+          if (change > 0.15) {
+            trendEl.textContent =
+              'Regional seismicity is higher than in the previous seven days: ' +
+              currentLabel + ', compared with ' + previousLabel + '.';
+          } else if (change < -0.15) {
+            trendEl.textContent =
+              'Regional seismicity is lower than in the previous seven days: ' +
+              currentLabel + ', compared with ' + previousLabel + '.';
+          } else {
+            trendEl.textContent =
+              'Regional seismicity is broadly unchanged from the previous seven days: ' +
+              currentLabel + ', compared with ' + previousLabel + '.';
+          }
         }
       }
 

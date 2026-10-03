@@ -229,9 +229,13 @@
   font-weight: 400;
 }
 
-.seismic-activity-card span {
-  color: #686f68;
-  font-size: 12px;
+.seismic-week-trend {
+  max-width: 430px;
+  margin: 10px 0 0;
+  color: #555c55;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .seismic-map-wrap {
