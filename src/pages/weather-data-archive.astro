@@ -1,17 +1,44 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/migration-stub.css';
+import '../styles/weather-archive.css';
 ---
-<BaseLayout title="Weather Data Archive | Brambley" bodyClass="migration-stub-body">
-  <main class="migration-stub">
-    <div class="migration-stub__inner">
-      <div class="migration-stub__eyebrow">BRAMBLEY MIGRATION PREVIEW</div>
-      <h1>Weather Data Archive</h1>
-      <p>The existing daily and historical weather archive will be migrated here without changing the source data repositories.</p>
-      <nav aria-label="Migration preview navigation">
-        <a href="/">Brambley</a>
-        <a href="/observatory">Observatory</a>
-      </nav>
+<BaseLayout
+  title="Weather Data Archive | Brambley Observatory"
+  description="Daily weather observations from Brambley in Grays Harbor, Washington."
+  bodyClass="weather-archive-page-body"
+>
+  <main class="weather-archive-page-shell">
+    <div id="brambley-weather-archive" class="bwa">
+      <header class="bwa-head">
+        <div><span>BRAMBLEY OBSERVATORY</span><h2>Weather Data Archive</h2><p>Daily observations from Brambley, Grays Harbor, Washington.</p></div>
+        <a href="/wxstation">← Weather Station</a>
+      </header>
+    
+      <section class="bwa-intro">
+        <p>This archive presents daily summaries from the Brambley weather record. Temperatures and precipitation are shown in SI units; wind speed remains in knots. Select a year and month, then click any row to view the additional measurements available for that date.</p>
+      </section>
+    
+      <section class="bwa-tools">
+        <label>Year<select id="bwa-year"><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option></select></label>
+        <label>Month<select id="bwa-month"><option value="all">All months</option><option value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></label>
+        <button id="bwa-download" type="button">Download displayed CSV</button>
+        <span id="bwa-count">Loading…</span>
+      </section>
+    
+      <div id="bwa-message" class="bwa-message" hidden></div>
+    
+      <div class="bwa-tablewrap">
+        <table class="bwa-table">
+          <thead><tr><th>Date</th><th>High</th><th>Low</th><th>Rain</th><th>Peak gust</th><th aria-label="Expand"></th></tr></thead>
+          <tbody id="bwa-body"></tbody>
+        </table>
+      </div>
+    
+      <footer class="bwa-foot">
+        <p><strong>About the record.</strong> The historical spreadsheet archive begins on 15 January 2020. Some dates or individual measurements are absent in the source record and are intentionally left blank rather than estimated. Earlier records contain the core daily temperature, rainfall and wind measurements. Additional pressure, humidity, UV and solar fields appear where the source record supports them. Historical solar values are station observations and should not be treated as a calibrated photovoltaic site assessment.</p>
+      </footer>
     </div>
   </main>
+
+  <script is:inline src="/scripts/weather-archive.js"></script>
 </BaseLayout>
