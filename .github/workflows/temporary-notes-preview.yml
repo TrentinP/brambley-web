@@ -1,0 +1,45 @@
+name: Temporary Notes Preview
+
+on:
+  push:
+    branches:
+      - notes-journal-design
+    paths:
+      - .github/workflows/temporary-notes-preview.yml
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Deploy temporary Cloudflare preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --temporary > /tmp/wrangler-output.txt 2>&1
+          PREVIEW_URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev' /tmp/wrangler-output.txt | tail -n 1 || true)"
+          if [ -z "$PREVIEW_URL" ]; then
+            sed -E 's#https://dash\.cloudflare\.com/claim-preview\?claimToken=[^[:space:]]+#<claim-url-redacted>#g' /tmp/wrangler-output.txt
+            exit 1
+          fi
+          echo "Preview URL: $PREVIEW_URL"
+          echo "## Temporary Notes Preview" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "$PREVIEW_URL" >> "$GITHUB_STEP_SUMMARY"
