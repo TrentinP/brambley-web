@@ -10,6 +10,9 @@ const notes = defineCollection({
     excerpt: z.string().optional(),
     category: z.enum(['garden', 'science', 'chronicle']).optional(),
     topic: z.string().optional(),
+    hero_art: z.string().optional(),
+    hero_art_alt: z.string().optional(),
+    hero_art_caption: z.string().optional(),
     draft: z.boolean().default(false)
   })
 });
