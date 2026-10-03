@@ -7,6 +7,7 @@
 
 .journal-entry-frame {
   position: relative;
+  isolation: isolate;
   width: min(100%, 1536px);
   min-height: 100vh;
   margin: 0 auto;
@@ -16,10 +17,58 @@
     url('/assets/notes/entry-bottom.webp') center bottom / 1536px 38px no-repeat,
     url('/assets/notes/entry-left.webp') left 46px / 90px 1600px repeat-y,
     url('/assets/notes/entry-right.webp') right 46px / 90px 1600px repeat-y,
-    url('/assets/notes/entry-paper-long.webp') center top / 100% 100% no-repeat;
+    #ead9ba;
+}
+
+.journal-entry-frame::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 46px;
+  right: 90px;
+  bottom: 38px;
+  left: 90px;
+  pointer-events: none;
+  background: url('/assets/notes/entry-paper-long.webp') center / 100% 100% no-repeat;
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 52px,
+      #000 calc(100% - 58px),
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      #000 72px,
+      #000 calc(100% - 72px),
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 52px,
+      #000 calc(100% - 58px),
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      #000 72px,
+      #000 calc(100% - 72px),
+      transparent 100%
+    );
+  mask-composite: intersect;
 }
 
 .journal-entry-inner {
+  position: relative;
+  z-index: 1;
   min-height: calc(100vh - 84px);
   padding: 0 110px 28px;
   background: transparent;
@@ -281,7 +330,48 @@
       url('/assets/notes/entry-bottom.webp') center bottom / 1120px 28px no-repeat,
       url('/assets/notes/entry-left.webp') left 34px / 20px 356px repeat-y,
       url('/assets/notes/entry-right.webp') right 34px / 20px 356px repeat-y,
-      url('/assets/notes/entry-paper-long.webp') center top / 100% 100% no-repeat;
+      #ead9ba;
+  }
+
+  .journal-entry-frame::before {
+    top: 34px;
+    right: 20px;
+    bottom: 28px;
+    left: 20px;
+
+    -webkit-mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        #000 28px,
+        #000 calc(100% - 32px),
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 24px,
+        #000 calc(100% - 24px),
+        transparent 100%
+      );
+    -webkit-mask-composite: source-in;
+
+    mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        #000 28px,
+        #000 calc(100% - 32px),
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 24px,
+        #000 calc(100% - 24px),
+        transparent 100%
+      );
+    mask-composite: intersect;
   }
 
   .journal-entry-inner {
