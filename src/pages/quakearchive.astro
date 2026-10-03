@@ -1,17 +1,149 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/migration-stub.css';
+import '../styles/quakearchive.css';
 ---
-<BaseLayout title="Archive of Notable Earthquakes | Brambley" bodyClass="migration-stub-body">
-  <main class="migration-stub">
-    <div class="migration-stub__inner">
-      <div class="migration-stub__eyebrow">BRAMBLEY MIGRATION PREVIEW</div>
-      <h1>Archive of Notable Earthquakes</h1>
-      <p>The existing earthquake archive and waveform records will be migrated here while preserving the current retention logic.</p>
-      <nav aria-label="Migration preview navigation">
-        <a href="/">Brambley</a>
-        <a href="/observatory">Observatory</a>
+<BaseLayout
+  title="Archive of Notable Earthquakes | Brambley Observatory"
+  description="Notable regional and global earthquakes recorded by Brambley's Raspberry Shake station R1C99."
+  bodyClass="quake-archive-page-body"
+>
+  <Fragment slot="head">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    />
+  </Fragment>
+
+  <main class="quake-archive">
+    <section class="qa-hero">
+      <nav class="qa-nav" aria-label="Brambley navigation">
+        <a href="/seismic">SEISMIC STATION</a>
+        <a href="/observatory">OBSERVATORY</a>
       </nav>
-    </div>
+
+      <div class="qa-shell qa-hero-inner">
+        <div class="qa-eyebrow">BRAMBLEY OBSERVATORY · SEISMOLOGY</div>
+        <h1>ARCHIVE OF<br />NOTABLE EARTHQUAKES</h1>
+        <p>Earthquakes preserved when Brambley recorded a meaningful signal.</p>
+      </div>
+    </section>
+
+    <section class="qa-intro">
+      <div class="qa-shell">
+        <div class="qa-section-label">THE RECORD</div>
+        <div class="qa-intro-grid">
+          <div>
+            <h2>A curated seismic archive.</h2>
+          </div>
+          <div class="qa-intro-copy">
+            <p>
+              The permanent archive retains regional earthquakes of M4.0 or greater
+              and global earthquakes of M7.0 or greater when station R1C99 recorded
+              a meaningful waveform.
+            </p>
+            <p>
+              Earthquake locations shown here are USGS event locations. Brambley's
+              station location, event-to-station distances, bearings, and other
+              location-derived details are intentionally omitted.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="qa-browser">
+      <div class="qa-shell">
+        <div class="qa-toolbar">
+          <div class="qa-scope" role="group" aria-label="Archive scope">
+            <button type="button" class="active" data-scope="global">GLOBAL</button>
+            <button type="button" data-scope="regional">REGIONAL</button>
+          </div>
+
+          <div class="qa-filters">
+            <label>
+              <span>YEAR</span>
+              <select id="qa-year">
+                <option value="all">All years</option>
+              </select>
+            </label>
+
+            <label>
+              <span>SORT</span>
+              <select id="qa-sort">
+                <option value="newest">Newest first</option>
+                <option value="magnitude">Magnitude</option>
+                <option value="depth">Depth</option>
+                <option value="signal">Recorded signal</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="qa-count" class="qa-count">Loading archive…</div>
+        </div>
+
+        <div class="qa-stat-grid">
+          <article>
+            <small>LARGEST</small>
+            <strong id="qa-largest">—</strong>
+            <p id="qa-largest-detail">From displayed records</p>
+          </article>
+          <article>
+            <small>DEEPEST</small>
+            <strong id="qa-deepest">—</strong>
+            <p id="qa-deepest-detail">From displayed records</p>
+          </article>
+          <article>
+            <small>STRONGEST RECORDING</small>
+            <strong id="qa-strongest">—</strong>
+            <p id="qa-strongest-detail">Highest archive signal score</p>
+          </article>
+        </div>
+
+        <div class="qa-map-block">
+          <div class="qa-map-head">
+            <div>
+              <div class="qa-section-label">EVENT MAP</div>
+              <h2 id="qa-map-title">Global events in the archive.</h2>
+            </div>
+            <p id="qa-map-note">
+              Circle size follows earthquake magnitude. Select a point for event details.
+            </p>
+          </div>
+
+          <div id="qa-map" class="qa-map" aria-label="Map of archived earthquakes"></div>
+          <div id="qa-map-status" class="qa-map-status">Loading archive map…</div>
+        </div>
+
+        <div class="qa-list-head">
+          <div>
+            <div class="qa-section-label">RECORDED EVENTS</div>
+            <h2>Waveforms preserved at Brambley.</h2>
+          </div>
+          <p>Open any event to view the archived R1C99 vertical-channel waveform.</p>
+        </div>
+
+        <div id="qa-events" class="qa-events"></div>
+        <div id="qa-empty" class="qa-empty" hidden>No archived events match these filters.</div>
+        <div id="qa-message" class="qa-message" hidden>The earthquake archive is temporarily unavailable.</div>
+      </div>
+    </section>
+
+    <footer class="qa-footer">
+      <div class="qa-shell">
+        <div class="qa-footer-rule"></div>
+        <div class="qa-footer-row">
+          <span>BRAMBLEY OBSERVATORY · R1C99 · EHZ</span>
+          <a href="/seismic">RETURN TO SEISMIC STATION →</a>
+        </div>
+      </div>
+    </footer>
   </main>
+
+  <script
+    is:inline
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+  <script is:inline src="/scripts/quakearchive.js"></script>
 </BaseLayout>
