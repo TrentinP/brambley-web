@@ -74,3 +74,148 @@
     max-width: none;
   }
 }
+
+
+/* ==========================================================
+   LIVE JOURNAL INDEX
+   Placeholder index copy in the approved artwork is covered
+   by a softly feathered parchment layer. All visible index
+   headings, dates and post titles above it are live HTML.
+   ========================================================== */
+
+.approved-index-frame {
+  container-type: inline-size;
+}
+
+.live-index-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  color: #38392f;
+  font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.live-index-page {
+  position: absolute;
+  top: 33.2%;
+  width: 30.6%;
+  height: 45.8%;
+  box-sizing: border-box;
+  isolation: isolate;
+  padding: 1.65cqw 3.35cqw 2.25cqw;
+  pointer-events: auto;
+}
+
+.live-index-page--left {
+  left: 18.1%;
+}
+
+.live-index-page--right {
+  left: 51.6%;
+}
+
+.live-index-page::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -5% -8% -4%;
+  pointer-events: none;
+  background: url('/assets/notes/entry-paper-feathered.webp') center / 100% 100% no-repeat;
+  opacity: .995;
+}
+
+.live-index-page h2 {
+  margin: 0;
+  color: #393a31;
+  font-size: 2.08cqw;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-align: center;
+}
+
+.live-index-title-rule {
+  display: block;
+  width: 3.2cqw;
+  height: 1px;
+  margin: 1.15cqw auto 3.65cqw;
+  background: rgba(57,58,49,.34);
+}
+
+.live-index-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 3.35cqw;
+}
+
+.live-index-groups--right {
+  padding-top: 5.2cqw;
+}
+
+.live-index-group h3 {
+  display: flex;
+  align-items: center;
+  gap: .9cqw;
+  margin: 0 0 1.45cqw;
+  color: #414139;
+  font-size: 1.13cqw;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.live-index-group h3::after {
+  content: "";
+  height: 1px;
+  flex: 1 1 auto;
+  background: rgba(65,65,57,.32);
+}
+
+.live-index-entries {
+  display: flex;
+  flex-direction: column;
+  gap: .92cqw;
+}
+
+.live-index-entry {
+  display: grid;
+  grid-template-columns: 7.7cqw minmax(0, 1fr);
+  gap: 1.2cqw;
+  align-items: baseline;
+  color: #3c3b34;
+  text-decoration: none;
+  font-size: 1.12cqw;
+  line-height: 1.2;
+}
+
+.live-index-entry time {
+  color: #625f54;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.live-index-entry span:last-child {
+  min-width: 0;
+}
+
+.live-index-entry:hover span:last-child {
+  text-decoration: underline;
+  text-underline-offset: .12em;
+  text-decoration-thickness: 1px;
+}
+
+.live-index-entry:focus-visible {
+  outline: 1px solid rgba(54,55,47,.68);
+  outline-offset: .35cqw;
+}
+
+@media (max-width: 760px) {
+  .live-index-page {
+    padding-left: 3.35cqw;
+    padding-right: 3.35cqw;
+  }
+}
