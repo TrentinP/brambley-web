@@ -12,9 +12,9 @@ const { category } = Astro.props;
 const config = notesCategories[category];
 
 const artwork: Record<NoteCategory, string> = {
-  garden: '/assets/notes/approved-garden-2x.webp',
-  science: '/assets/notes/approved-science-2x.webp',
-  chronicle: '/assets/notes/approved-chronicle-2x.webp'
+  garden: '/assets/notes/gardenBook-Folio.png',
+  science: '/assets/notes/scienceNotes-folio.png',
+  chronicle: '/assets/notes/chronicle-folio.png'
 };
 
 const notes = (await getCollection('notes', ({ data }) => !data.draft))
@@ -65,7 +65,7 @@ const formatDate = (date: Date) =>
   description={config.subtitle}
   bodyClass="notes-page-body"
 >
-  <main class="approved-notes-page">
+  <main class="approved-notes-page approved-index-page">
     <div class="approved-notes-frame approved-index-frame">
       <img
         class="approved-notes-art"
