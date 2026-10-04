@@ -279,6 +279,43 @@
   width: 8.0%;
 }
 
+/* ==========================================================
+   PER-FOLIO INDEX ALIGNMENT
+   The three notebook paintings do not use identical page
+   geometry. Garden and Science therefore need their own live
+   text boxes rather than inheriting Chronicle's coordinates.
+   ========================================================== */
+
+.approved-index-frame--garden .live-index-page {
+  top: 32.8%;
+  padding: 1.55cqw 2.9cqw 2.25cqw;
+}
+
+.approved-index-frame--garden .live-index-page--left {
+  left: 20.2%;
+  width: 28.8%;
+}
+
+.approved-index-frame--garden .live-index-page--right {
+  left: 49.7%;
+  width: 28.8%;
+}
+
+.approved-index-frame--science .live-index-page {
+  top: 31.8%;
+  padding: 1.55cqw 3.05cqw 2.25cqw;
+}
+
+.approved-index-frame--science .live-index-page--left {
+  left: 17.9%;
+  width: 31.1%;
+}
+
+.approved-index-frame--science .live-index-page--right {
+  left: 49.9%;
+  width: 30.3%;
+}
+
 @media (max-width: 760px) {
   .approved-index-page {
     overflow-x: auto;
