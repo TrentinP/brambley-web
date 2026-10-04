@@ -2,6 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/migration-stub.css';
 ---
-<BaseLayout title="Page not found | Brambley" bodyClass="migration-stub-body">
-  <main class="migration-stub"><div class="migration-stub__inner"><div class="migration-stub__eyebrow">BRAMBLEY</div><h1>Page not found.</h1><p>The path you followed is not part of the migration preview.</p><nav><a href="/">Return to Brambley</a></nav></div></main>
+<BaseLayout
+  title="Page not found | Brambley"
+  description="The requested page could not be found."
+  bodyClass="migration-stub-body"
+>
+  <main class="migration-stub">
+    <div class="migration-stub__inner">
+      <div class="migration-stub__eyebrow">BRAMBLEY</div>
+      <h1>Page not found.</h1>
+      <p>The page you followed does not appear to be here.</p>
+      <nav aria-label="Page not found navigation">
+        <a href="/">Return to Brambley</a>
+      </nav>
+    </div>
+  </main>
 </BaseLayout>
