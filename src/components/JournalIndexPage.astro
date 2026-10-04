@@ -21,33 +21,41 @@ const notes = (await getCollection('notes', ({ data }) => !data.draft))
   .filter((entry) => entry.data.category === category)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const configuredSide = new Map(config.topics.map((topic) => [topic.name, topic.page]));
+const configuredNames = new Set(config.topics.map((topic) => topic.name));
 
-const topicNames: string[] = config.topics.map((topic) => topic.name);
+const configuredGroups = config.topics
+  .map((topic) => ({
+    name: topic.name,
+    page: topic.page,
+    entries: notes.filter(
+      (entry) => (entry.data.topic ?? 'Other Notes') === topic.name
+    )
+  }))
+  .filter((group) => group.entries.length > 0);
 
-for (const note of notes) {
-  const topic = note.data.topic ?? 'Other Notes';
-  if (!topicNames.includes(topic)) topicNames.push(topic);
-}
+let leftCount = configuredGroups.filter((group) => group.page === 'left').length;
+let rightCount = configuredGroups.filter((group) => group.page === 'right').length;
 
-let leftCount = config.topics.filter((topic) => topic.page === 'left').length;
-let rightCount = config.topics.filter((topic) => topic.page === 'right').length;
+const extraTopicNames = Array.from(
+  new Set(notes.map((entry) => entry.data.topic ?? 'Other Notes'))
+).filter((name) => !configuredNames.has(name));
 
-const topicGroups = topicNames.map((name) => {
-  let page = configuredSide.get(name);
+const extraGroups = extraTopicNames.map((name) => {
+  const page = leftCount <= rightCount ? 'left' : 'right';
 
-  if (!page) {
-    page = leftCount <= rightCount ? 'left' : 'right';
-    if (page === 'left') leftCount += 1;
-    else rightCount += 1;
-  }
+  if (page === 'left') leftCount += 1;
+  else rightCount += 1;
 
   return {
     name,
     page,
-    entries: notes.filter((entry) => (entry.data.topic ?? 'Other Notes') === name)
+    entries: notes.filter(
+      (entry) => (entry.data.topic ?? 'Other Notes') === name
+    )
   };
 });
+
+const topicGroups = [...configuredGroups, ...extraGroups];
 
 const leftGroups = topicGroups.filter((group) => group.page === 'left');
 const rightGroups = topicGroups.filter((group) => group.page === 'right');
