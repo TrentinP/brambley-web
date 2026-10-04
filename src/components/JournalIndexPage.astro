@@ -73,8 +73,8 @@ const formatDate = (date: Date) =>
   description={config.subtitle}
   bodyClass="notes-page-body notes-index-body"
 >
-  <main class="approved-notes-page approved-index-page">
-    <div class="approved-notes-frame approved-index-frame">
+  <main class={`approved-notes-page approved-index-page approved-index-page--${category}`}>
+    <div class={`approved-notes-frame approved-index-frame approved-index-frame--${category}`}>
       <img
         class="approved-notes-art"
         src={artwork[category]}
@@ -89,7 +89,7 @@ const formatDate = (date: Date) =>
         <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
       </nav>
 
-      <div class="live-index-overlay" aria-label={`${config.title} index`}>
+      <div class={`live-index-overlay live-index-overlay--${category}`} aria-label={`${config.title} index`}>
         <section class="live-index-page live-index-page--left">
           <h2>INDEX</h2>
           <span class="live-index-title-rule" aria-hidden="true"></span>
