@@ -23,24 +23,24 @@ const notes = (await getCollection('notes', ({ data }) => !data.draft))
 
 const configuredSide = new Map(config.topics.map((topic) => [topic.name, topic.page]));
 
-const topicNames: string[] = [];
+const topicNames: string[] = config.topics.map((topic) => topic.name);
+
 for (const note of notes) {
   const topic = note.data.topic ?? 'Other Notes';
   if (!topicNames.includes(topic)) topicNames.push(topic);
 }
 
-let leftCount = 0;
-let rightCount = 0;
+let leftCount = config.topics.filter((topic) => topic.page === 'left').length;
+let rightCount = config.topics.filter((topic) => topic.page === 'right').length;
 
 const topicGroups = topicNames.map((name) => {
   let page = configuredSide.get(name);
 
   if (!page) {
     page = leftCount <= rightCount ? 'left' : 'right';
+    if (page === 'left') leftCount += 1;
+    else rightCount += 1;
   }
-
-  if (page === 'left') leftCount += 1;
-  else rightCount += 1;
 
   return {
     name,
