@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 import { notesCategories, type NoteCategory } from '../lib/notesTaxonomy';
 import '../styles/notes.css';
 
@@ -15,6 +16,48 @@ const artwork: Record<NoteCategory, string> = {
   science: '/assets/notes/approved-science-2x.webp',
   chronicle: '/assets/notes/approved-chronicle-2x.webp'
 };
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft))
+  .filter((entry) => entry.data.category === category)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const configuredSide = new Map(config.topics.map((topic) => [topic.name, topic.page]));
+
+const topicNames: string[] = [];
+for (const note of notes) {
+  const topic = note.data.topic ?? 'Other Notes';
+  if (!topicNames.includes(topic)) topicNames.push(topic);
+}
+
+let leftCount = 0;
+let rightCount = 0;
+
+const topicGroups = topicNames.map((name) => {
+  let page = configuredSide.get(name);
+
+  if (!page) {
+    page = leftCount <= rightCount ? 'left' : 'right';
+  }
+
+  if (page === 'left') leftCount += 1;
+  else rightCount += 1;
+
+  return {
+    name,
+    page,
+    entries: notes.filter((entry) => (entry.data.topic ?? 'Other Notes') === name)
+  };
+});
+
+const leftGroups = topicGroups.filter((group) => group.page === 'left');
+const rightGroups = topicGroups.filter((group) => group.page === 'right');
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  }).format(date);
 ---
 
 <BaseLayout
@@ -23,11 +66,12 @@ const artwork: Record<NoteCategory, string> = {
   bodyClass="notes-page-body"
 >
   <main class="approved-notes-page">
-    <div class="approved-notes-frame">
+    <div class="approved-notes-frame approved-index-frame">
       <img
         class="approved-notes-art"
         src={artwork[category]}
-        alt={`${config.title} illustrated index spread`}
+        alt=""
+        aria-hidden="true"
       />
 
       <nav class="approved-art-nav" aria-label="Brambley navigation">
@@ -36,6 +80,51 @@ const artwork: Record<NoteCategory, string> = {
         <a class="approved-nav approved-nav--about" href="/about" aria-label="About"></a>
         <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
       </nav>
+
+      <div class="live-index-overlay" aria-label={`${config.title} index`}>
+        <section class="live-index-page live-index-page--left">
+          <h2>INDEX</h2>
+          <span class="live-index-title-rule" aria-hidden="true"></span>
+
+          <div class="live-index-groups">
+            {leftGroups.map((group) => (
+              <section class="live-index-group">
+                <h3><span>{group.name}</span></h3>
+                <div class="live-index-entries">
+                  {group.entries.map((entry) => (
+                    <a class="live-index-entry" href={`/blog/${entry.id}`}>
+                      <time datetime={entry.data.date.toISOString()}>
+                        {formatDate(entry.data.date)}
+                      </time>
+                      <span>{entry.data.title}</span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </section>
+
+        <section class="live-index-page live-index-page--right">
+          <div class="live-index-groups live-index-groups--right">
+            {rightGroups.map((group) => (
+              <section class="live-index-group">
+                <h3><span>{group.name}</span></h3>
+                <div class="live-index-entries">
+                  {group.entries.map((entry) => (
+                    <a class="live-index-entry" href={`/blog/${entry.id}`}>
+                      <time datetime={entry.data.date.toISOString()}>
+                        {formatDate(entry.data.date)}
+                      </time>
+                      <span>{entry.data.title}</span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 </BaseLayout>
