@@ -76,14 +76,14 @@ const formatDate = (date: Date) =>
   <main class={`approved-notes-page approved-index-page approved-index-page--${category}`}>
     <div class={`approved-notes-frame approved-index-frame approved-index-frame--${category}`}>
       <img
-        class="approved-notes-art"
+        class={`approved-notes-art ${category === 'garden' ? 'approved-notes-art--garden' : ''}`}
         src={artwork[category]}
         alt=""
         aria-hidden="true"
       />
 
       {category === 'garden' && (
-        <div class="garden-heading-repair">
+        <div class="garden-heading-live">
           <h1>Garden Book</h1>
         </div>
       )}
