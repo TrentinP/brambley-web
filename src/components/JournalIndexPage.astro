@@ -83,9 +83,17 @@ const formatDate = (date: Date) =>
       />
 
       {category === 'garden' && (
-        <div class="garden-heading-repair">
-          <h1>Garden Book</h1>
-        </div>
+        <>
+          <img
+            class="garden-header-eraser"
+            src="/assets/notes/garden-header-eraser.webp"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="garden-heading-repair">
+            <h1>Garden Book</h1>
+          </div>
+        </>
       )}
 
       <nav class="approved-art-nav" aria-label="Brambley navigation">
