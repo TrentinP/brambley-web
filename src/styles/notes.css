@@ -356,6 +356,21 @@
   );
 }
 
+
+.approved-index-frame--garden .garden-ornament-art {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  clip-path: inset(14.8% 38% 77.9% 38%);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .approved-index-frame--garden .garden-heading-live {
   position: absolute;
   inset: 0;
