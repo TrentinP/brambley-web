@@ -359,13 +359,13 @@
 
 .approved-index-frame--garden .garden-ornament-art {
   position: absolute;
-  inset: 0;
   z-index: 3;
+  top: 16.05%;
+  left: 47.55%;
   display: block;
-  width: 100%;
+  width: 4.9%;
   height: auto;
   margin: 0;
-  clip-path: inset(14.8% 38% 77.9% 38%);
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
@@ -377,6 +377,24 @@
   z-index: 4;
   pointer-events: none;
   container-type: inline-size;
+}
+
+.approved-index-frame--garden .garden-heading-live::before,
+.approved-index-frame--garden .garden-heading-live::after {
+  content: "";
+  position: absolute;
+  top: 19.18%;
+  width: 3.55%;
+  height: 1px;
+  background: rgba(76, 76, 64, .42);
+}
+
+.approved-index-frame--garden .garden-heading-live::before {
+  left: 42.65%;
+}
+
+.approved-index-frame--garden .garden-heading-live::after {
+  left: 53.8%;
 }
 
 .approved-index-frame--garden .garden-heading-live h1 {
