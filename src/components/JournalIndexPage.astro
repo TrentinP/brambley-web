@@ -82,11 +82,17 @@ const formatDate = (date: Date) =>
         aria-hidden="true"
       />
 
+      {category === 'garden' && (
+        <div class="garden-heading-repair">
+          <h1>Garden Book</h1>
+        </div>
+      )}
+
       <nav class="approved-art-nav" aria-label="Brambley navigation">
-        <a class="approved-nav approved-nav--home" href="/" aria-label="Home"></a>
-        <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory"></a>
-        <a class="approved-nav approved-nav--about" href="/about" aria-label="About"></a>
-        <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page"></a>
+        <a class="approved-nav approved-nav--home" href="/" aria-label="Home">{category === 'garden' ? 'Home' : null}</a>
+        <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory">{category === 'garden' ? 'Observatory' : null}</a>
+        <a class="approved-nav approved-nav--about" href="/about" aria-label="About">{category === 'garden' ? 'About' : null}</a>
+        <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page">{category === 'garden' ? 'Notes' : null}</a>
       </nav>
 
       <div class={`live-index-overlay live-index-overlay--${category}`} aria-label={`${config.title} index`}>
