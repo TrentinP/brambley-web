@@ -448,3 +448,157 @@
   padding-bottom: .43cqw;
   border-bottom: 1px solid currentColor;
 }
+
+
+/* ==========================================================
+   SCIENCE FIELD NOTES + CHRONICLE HEADER MATCH
+   Only the baked header areas are hidden. Book/index artwork,
+   page geometry and lower folio artwork remain unchanged.
+   ========================================================== */
+
+.approved-index-frame--science,
+.approved-index-frame--chronicle {
+  background: #f9f3ea;
+}
+
+.approved-index-frame--science .approved-notes-art--science {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 25.0%,
+    rgba(0, 0, 0, .38) 26.2%,
+    #000 27.3%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 25.0%,
+    rgba(0, 0, 0, .38) 26.2%,
+    #000 27.3%,
+    #000 100%
+  );
+}
+
+.approved-index-frame--chronicle .approved-notes-art--chronicle {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 25.0%,
+    rgba(0, 0, 0, .38) 26.4%,
+    #000 27.8%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 25.0%,
+    rgba(0, 0, 0, .38) 26.4%,
+    #000 27.8%,
+    #000 100%
+  );
+}
+
+.approved-index-frame--science .science-ornament-art,
+.approved-index-frame--chronicle .chronicle-ornament-art {
+  position: absolute;
+  z-index: 3;
+  top: 16.05%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 28.5%;
+  height: auto;
+  margin: 0;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.approved-index-frame--science .science-heading-live,
+.approved-index-frame--chronicle .chronicle-heading-live {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  container-type: inline-size;
+}
+
+.approved-index-frame--science .science-heading-live::before,
+.approved-index-frame--science .science-heading-live::after,
+.approved-index-frame--chronicle .chronicle-heading-live::before,
+.approved-index-frame--chronicle .chronicle-heading-live::after {
+  content: "";
+  position: absolute;
+  top: 19.18%;
+  width: 3.55%;
+  height: 1px;
+  background: rgba(76, 76, 64, .42);
+}
+
+.approved-index-frame--science .science-heading-live::before,
+.approved-index-frame--chronicle .chronicle-heading-live::before {
+  left: 42.65%;
+}
+
+.approved-index-frame--science .science-heading-live::after,
+.approved-index-frame--chronicle .chronicle-heading-live::after {
+  left: 53.8%;
+}
+
+.approved-index-frame--science .science-heading-live h1,
+.approved-index-frame--chronicle .chronicle-heading-live h1 {
+  position: absolute;
+  top: 8.35%;
+  left: 50%;
+  width: max-content;
+  margin: 0;
+  transform: translateX(-50%);
+  color: #25351f;
+  font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
+  font-size: 4.05cqw;
+  font-weight: 400;
+  font-variant-caps: small-caps;
+  letter-spacing: .01em;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+}
+
+.approved-index-frame--science .approved-nav,
+.approved-index-frame--chronicle .approved-nav {
+  z-index: 6;
+  top: 4.15%;
+  width: auto;
+  height: auto;
+  color: #2b3328;
+  border-radius: 0;
+  font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
+  font-size: .92cqw;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.approved-index-frame--science .approved-nav--home,
+.approved-index-frame--chronicle .approved-nav--home {
+  left: 61.8%;
+}
+
+.approved-index-frame--science .approved-nav--observatory,
+.approved-index-frame--chronicle .approved-nav--observatory {
+  left: 66.9%;
+}
+
+.approved-index-frame--science .approved-nav--about,
+.approved-index-frame--chronicle .approved-nav--about {
+  left: 74.6%;
+}
+
+.approved-index-frame--science .approved-nav--notes,
+.approved-index-frame--chronicle .approved-nav--notes {
+  left: 81.1%;
+  padding-bottom: .43cqw;
+  border-bottom: 1px solid currentColor;
+}
