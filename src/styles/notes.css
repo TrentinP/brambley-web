@@ -326,3 +326,102 @@
     max-width: none;
   }
 }
+
+
+/* ==========================================================
+   GARDEN BOOK HEADER — MATCH NOTES LANDING
+   Garden-only repair. The original folio keeps every painted
+   element; only its baked title, subtitle and upper-right nav
+   are covered and replaced to match the approved landing page.
+   ========================================================== */
+
+.approved-index-frame--garden .garden-heading-repair {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  container-type: inline-size;
+}
+
+.approved-index-frame--garden .garden-heading-repair::before,
+.approved-index-frame--garden .garden-heading-repair::after,
+.approved-index-frame--garden .approved-art-nav::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  background: url('/assets/notes/entry-paper-feathered.webp') center / 100% 100% no-repeat;
+  opacity: .995;
+}
+
+.approved-index-frame--garden .garden-heading-repair::before {
+  left: 31.7%;
+  top: 6.5%;
+  width: 36.6%;
+  height: 9.2%;
+}
+
+.approved-index-frame--garden .garden-heading-repair::after {
+  left: 34.2%;
+  top: 20.0%;
+  width: 31.6%;
+  height: 5.6%;
+}
+
+.approved-index-frame--garden .garden-heading-repair h1 {
+  position: absolute;
+  left: 50%;
+  top: 7.25%;
+  width: max-content;
+  margin: 0;
+  transform: translateX(-50%);
+  color: #25351f;
+  font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
+  font-size: 4.35cqw;
+  font-weight: 400;
+  font-variant-caps: small-caps;
+  letter-spacing: .012em;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+}
+
+.approved-index-frame--garden .approved-art-nav::before {
+  z-index: 5;
+  left: 54.8%;
+  top: 2.0%;
+  width: 34.8%;
+  height: 7.2%;
+}
+
+.approved-index-frame--garden .approved-nav {
+  z-index: 6;
+  top: 4.45%;
+  width: auto;
+  height: auto;
+  color: #2b3328;
+  border-radius: 0;
+  font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
+  font-size: 1.25cqw;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.approved-index-frame--garden .approved-nav--home {
+  left: 56.8%;
+}
+
+.approved-index-frame--garden .approved-nav--observatory {
+  left: 63.1%;
+}
+
+.approved-index-frame--garden .approved-nav--about {
+  left: 73.2%;
+}
+
+.approved-index-frame--garden .approved-nav--notes {
+  left: 81.0%;
+  padding-bottom: .72cqw;
+  border-bottom: 1px solid currentColor;
+}
