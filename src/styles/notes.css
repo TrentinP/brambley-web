@@ -128,8 +128,7 @@
   z-index: -1;
   inset: -5% -8% -4%;
   pointer-events: none;
-  background: url('/assets/notes/entry-paper-feathered.webp') center / 100% 100% no-repeat;
-  opacity: .995;
+  background: #f9f3ea;
 }
 
 .live-index-page h2 {
@@ -376,7 +375,7 @@
   transform: translateX(-50%);
   color: #25351f;
   font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
-  font-size: 4.35cqw;
+  font-size: 3.55cqw;
   font-weight: 400;
   font-variant-caps: small-caps;
   letter-spacing: .012em;
@@ -400,7 +399,7 @@
   color: #2b3328;
   border-radius: 0;
   font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
-  font-size: 1.25cqw;
+  font-size: .92cqw;
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: 0;
@@ -409,19 +408,19 @@
 }
 
 .approved-index-frame--garden .approved-nav--home {
-  left: 56.8%;
+  left: 61.2%;
 }
 
 .approved-index-frame--garden .approved-nav--observatory {
-  left: 63.1%;
+  left: 66.2%;
 }
 
 .approved-index-frame--garden .approved-nav--about {
-  left: 73.2%;
+  left: 73.5%;
 }
 
 .approved-index-frame--garden .approved-nav--notes {
-  left: 81.0%;
-  padding-bottom: .72cqw;
+  left: 80.1%;
+  padding-bottom: .45cqw;
   border-bottom: 1px solid currentColor;
 }
