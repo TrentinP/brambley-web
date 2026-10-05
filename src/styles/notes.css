@@ -361,9 +361,10 @@
   position: absolute;
   z-index: 3;
   top: 16.05%;
-  left: 47.55%;
+  left: 50%;
+  transform: translateX(-50%);
   display: block;
-  width: 4.9%;
+  width: 8.2%;
   height: auto;
   margin: 0;
   pointer-events: none;
