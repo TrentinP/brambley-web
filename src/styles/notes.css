@@ -329,10 +329,22 @@
 
 /* ==========================================================
    GARDEN BOOK HEADER — MATCH NOTES LANDING
-   Garden-only repair. The original folio keeps every painted
-   element; only its baked title, subtitle and upper-right nav
-   are covered and replaced to match the approved landing page.
+   Garden-only cleanup. The transparent artwork layer removes
+   only the baked title, subtitle and upper-right labels.
+   Replacement title and nav use the landing-page treatment.
    ========================================================== */
+
+.approved-index-frame--garden .garden-header-eraser {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 
 .approved-index-frame--garden .garden-heading-repair {
   position: absolute;
@@ -340,30 +352,6 @@
   z-index: 4;
   pointer-events: none;
   container-type: inline-size;
-}
-
-.approved-index-frame--garden .garden-heading-repair::before,
-.approved-index-frame--garden .garden-heading-repair::after,
-.approved-index-frame--garden .approved-art-nav::before {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  background: url('/assets/notes/entry-paper-feathered.webp') center / 100% 100% no-repeat;
-  opacity: .995;
-}
-
-.approved-index-frame--garden .garden-heading-repair::before {
-  left: 31.7%;
-  top: 6.5%;
-  width: 36.6%;
-  height: 9.2%;
-}
-
-.approved-index-frame--garden .garden-heading-repair::after {
-  left: 34.2%;
-  top: 20.0%;
-  width: 31.6%;
-  height: 5.6%;
 }
 
 .approved-index-frame--garden .garden-heading-repair h1 {
@@ -383,44 +371,43 @@
   text-rendering: optimizeLegibility;
 }
 
-.approved-index-frame--garden .approved-art-nav::before {
-  z-index: 5;
-  left: 54.8%;
-  top: 2.0%;
-  width: 34.8%;
-  height: 7.2%;
-}
-
 .approved-index-frame--garden .approved-nav {
   z-index: 6;
-  top: 4.45%;
-  width: auto;
-  height: auto;
+  top: 2.4%;
+  height: 5.2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #2b3328;
   border-radius: 0;
   font-family: Garamond, "Cormorant Garamond", Baskerville, "Times New Roman", serif;
-  font-size: .92cqw;
+  font-size: 1cqw;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1;
   letter-spacing: 0;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .approved-index-frame--garden .approved-nav--home {
-  left: 61.2%;
+  left: 62.4%;
+  width: 7.6%;
 }
 
 .approved-index-frame--garden .approved-nav--observatory {
-  left: 66.2%;
+  left: 69.8%;
+  width: 11.2%;
 }
 
 .approved-index-frame--garden .approved-nav--about {
-  left: 73.5%;
+  left: 82.0%;
+  width: 7.2%;
 }
 
 .approved-index-frame--garden .approved-nav--notes {
-  left: 80.1%;
-  padding-bottom: .45cqw;
-  border-bottom: 1px solid currentColor;
+  left: 90.0%;
+  width: 7.0%;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .55cqw;
 }
