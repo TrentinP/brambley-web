@@ -76,13 +76,13 @@ const formatDate = (date: Date) =>
   <main class={`approved-notes-page approved-index-page approved-index-page--${category}`}>
     <div class={`approved-notes-frame approved-index-frame approved-index-frame--${category}`}>
       <img
-        class={`approved-notes-art ${category === 'garden' ? 'approved-notes-art--garden' : ''}`}
+        class={`approved-notes-art approved-notes-art--${category}`}
         src={artwork[category]}
         alt=""
         aria-hidden="true"
       />
 
-      {category === 'garden' && (
+      {category === 'garden' ? (
         <>
           <img
             class="garden-ornament-art"
@@ -94,13 +94,25 @@ const formatDate = (date: Date) =>
             <h1>Garden Book</h1>
           </div>
         </>
+      ) : (
+        <>
+          <img
+            class={`${category}-ornament-art`}
+            src="/assets/notes/entry-ornament-transparent.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class={`${category}-heading-live`}>
+            <h1>{config.title}</h1>
+          </div>
+        </>
       )}
 
       <nav class="approved-art-nav" aria-label="Brambley navigation">
-        <a class="approved-nav approved-nav--home" href="/" aria-label="Home">{category === 'garden' ? 'Home' : null}</a>
-        <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory">{category === 'garden' ? 'Observatory' : null}</a>
-        <a class="approved-nav approved-nav--about" href="/about" aria-label="About">{category === 'garden' ? 'About' : null}</a>
-        <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page">{category === 'garden' ? 'Notes' : null}</a>
+        <a class="approved-nav approved-nav--home" href="/" aria-label="Home">Home</a>
+        <a class="approved-nav approved-nav--observatory" href="/observatory" aria-label="Observatory">Observatory</a>
+        <a class="approved-nav approved-nav--about" href="/about" aria-label="About">About</a>
+        <a class="approved-nav approved-nav--notes" href="/blog" aria-label="Notes" aria-current="page">Notes</a>
       </nav>
 
       <div class={`live-index-overlay live-index-overlay--${category}`} aria-label={`${config.title} index`}>
